@@ -36,8 +36,8 @@
 
 - <p style="color: red;">A aplication that connect students with teachers, in this project we can set up classes and study with teachers from any place in the world</strong></p>
 
-To see the **Api project**, click here: [CRUD Users web](https://github.com/jhonpedro/Proffy/tree/master/backend)</br>
-To see the **Web project**, click here: [CRUD Users web](https://github.com/jhonpedro/Proffy/tree/master/web)</br>
+To see the **Api project**, click here: [Proffy API](https://github.com/jhonpedro/Proffy/tree/master/backend)</br>
+To see the **Web project**, click here: [Proffy WEB](https://github.com/jhonpedro/Proffy/tree/master/web)</br>
 
 ## 🚀 Technologies
 

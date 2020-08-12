@@ -36,8 +36,8 @@
 
 - <p style="color: red;">A aplication that connect students with teachers, in this project we can set up classes and study with teachers from any place in the world</strong></p>
 
-To see the **Web client**, click here: [CRUD Users web](https://github.com/jhonpedro/Proffy/tree/master/frontend)</br>
-To see the **Mobile project**, click here: [CRUD Users web](https://github.com/jhonpedro/Proffy/tree/master/mobile)</br>
+To see the **Web client**, click here: [Proffy WEB](https://github.com/jhonpedro/Proffy/tree/master/frontend)</br>
+To see the **Mobile project**, click here: [Proffy MOBILE](https://github.com/jhonpedro/Proffy/tree/master/mobile)</br>
 
 ## 🚀 Technologies
 
