@@ -1,6 +1,6 @@
 import knex from 'knex'
 
-const db = knex({
+const Database = knex({
   client: 'pg',
   connection: {
     host: 'localhost',
@@ -11,4 +11,4 @@ const db = knex({
   useNullAsDefault: true
 })
 
-export default db
+export default Database
