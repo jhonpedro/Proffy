@@ -2,6 +2,9 @@ import express from 'express'
 import routes from './routes'
 import cors from 'cors'
 
+import env from 'dotenv'
+env.config()
+
 const app = express()
 
 app.use(cors())

@@ -5,6 +5,8 @@ import jwt from 'jsonwebtoken'
 import { emailValidator } from '../utils'
 import { findUserByEmailRepository, createUserRepository } from '../repositories'
 
+const secret = process.env.JWT_SECRECT as string
+
 export default {
   async create(req: Request, res: Response) {
     const { name, email, password } = req.body
@@ -40,7 +42,7 @@ export default {
       return res.status(401)
     }
 
-    await jwt.sign({ id: userInDataBase.id }, 'JWTSECRET', { expiresIn: '2h' }, (error, token) => {
+    await jwt.sign({ id: userInDataBase.id }, secret, { expiresIn: '2h' }, (error, token) => {
       if (error) return res.status(500)
 
       return res.status(200).json({ token: token })
