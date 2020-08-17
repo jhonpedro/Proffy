@@ -49,8 +49,8 @@ export default {
         port: 587,
         secure: false,
         auth: {
-          user: 'proffyapp@gmail.com',
-          pass: '@Proffy123'
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASSWORD
         }
       })
 
