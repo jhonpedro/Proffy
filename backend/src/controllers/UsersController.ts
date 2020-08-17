@@ -5,6 +5,7 @@ import nodemailer from 'nodemailer'
 
 import { emailValidator } from '../utils'
 import { findUserByEmailRepository, createUserRepository, changeUserPasswordRepository } from '../repositories'
+import { createForgotPassword_tokenRepository } from '../repositories/forgotPassword_token'
 
 const secret = process.env.JWT_SECRET as string
 
@@ -41,8 +42,10 @@ export default {
       return res.status(401)
     }
 
-    jwt.sign({ id: userInDataBase.id }, secret, { expiresIn: '1h' }, (error, token) => {
+    jwt.sign({ id: userInDataBase.id }, secret, { expiresIn: '1h' }, async (error, token: any) => {
       if (error) return res.status(500)
+
+      await createForgotPassword_tokenRepository({ user_id: userInDataBase.id, token })
 
       const transp = nodemailer.createTransport({
         host: 'smtp.gmail.com',
@@ -64,7 +67,6 @@ export default {
           http://localhost:3000/change-password/${token}
         `
       }).then(data => {
-        console.log(data)
         return res.sendStatus(200)
       })
 
@@ -76,7 +78,10 @@ export default {
 
     try {
       const tokenPayload: any = jwt.verify(token, secret)
-      const updatedUser = await changeUserPasswordRepository(tokenPayload.id, newPassword)
+      const salt = bcrypt.genSaltSync()
+      const encryptedPassword = bcrypt.hashSync(newPassword, salt)
+
+      const updatedUser = await changeUserPasswordRepository({ id: tokenPayload.id, password: encryptedPassword })
 
       return res.status(200).json(updatedUser)
     } catch (error) {
