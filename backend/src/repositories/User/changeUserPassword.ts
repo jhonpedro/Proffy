@@ -1,6 +1,11 @@
 import Database from '../../database/connection'
 
-export default async function changeUserPasswordRepository(id: number, password: string) {
+interface changeUserPasswordRepositoryProps {
+  id: number,
+  password: string
+}
+
+export default async function changeUserPasswordRepository({ id, password }: changeUserPasswordRepositoryProps) {
   const [user] = await Database('users').update({ password }).where({ id }).returning('*')
 
   return user
