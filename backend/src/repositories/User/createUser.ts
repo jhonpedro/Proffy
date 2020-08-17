@@ -3,11 +3,12 @@ import { findUserByEmailRepository } from '..'
 
 interface createUserProps {
   name: string,
+  last_name: string,
   email: string,
   password: string
 }
 
-export default async function createUser({ email, name, password }: createUserProps) {
+export default async function createUser({ email, last_name, name, password }: createUserProps) {
 
   const userInTable = await findUserByEmailRepository(email)
   if (userInTable) {
@@ -16,9 +17,10 @@ export default async function createUser({ email, name, password }: createUserPr
 
   const [createdUser] = await Database('users').insert({
     name,
+    last_name,
     email,
     password
   }).returning('*')
 
-  return createUser
+  return createdUser
 }
