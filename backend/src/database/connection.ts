@@ -1,4 +1,5 @@
 import knex from 'knex'
+require('dotenv').config()
 
 const { DB_HOST, DB_DATABASE, DB_USER, DB_PASSWORD } = process.env
 
