@@ -1,3 +1,5 @@
 import createForgotPassword_tokenRepository from "./createForgotPassword_token";
+import removeForgotPassword_tokenRepository from './removeForgotPassword_token'
+import searchForgotPassword_tokenRepository from './searchForgotPassword_token'
 
-export { createForgotPassword_tokenRepository }
+export { createForgotPassword_tokenRepository, removeForgotPassword_tokenRepository, searchForgotPassword_tokenRepository }
