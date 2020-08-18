@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 
 import db from '../database/connection'
-import ConvertHourToMinute from '../utils/convertHourToMinute'
+import { convertHourToMinutes } from '../utils/helpers'
 
 interface ScheduleItem {
   week_day: number,
@@ -21,7 +21,7 @@ export default {
       return res.status(400).json({ error: "Invalid params to search classes" })
     }
 
-    const timeInMinutes = ConvertHourToMinute(time)
+    const timeInMinutes = convertHourToMinutes(time)
 
     const classes = await db('classes')
       .whereExists(function () {
