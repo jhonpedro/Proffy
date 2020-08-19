@@ -9,7 +9,15 @@ import studyIcon from '../../assets/images/icons/study.svg'
 import giveClasIcons from '../../assets/images/icons/give-classes.svg'
 import purpleHeart from '../../assets/images/icons/purple-heart.svg'
 
-import './styles.css'
+// import './styles.css'
+
+import {
+  PageLanding,
+  PageLandingContent,
+  LogoContainer,
+  ButtonsContainer,
+  Button
+} from './styles'
 
 function Landing() {
   const [totalConnections, setTotalConnections] = useState(0)
@@ -22,34 +30,37 @@ function Landing() {
   }, [totalConnections])
 
   return (
-    <div id="page-landing">
-      <div id="page-landing-content" className="container">
-        <div className="logo-container">
+    <PageLanding>
+      <PageLandingContent className="container">
+        <LogoContainer>
           <img src={logoImg} alt="Proffy" />
           <h2>Sua plataforma de estudos online</h2>
-        </div>
+        </LogoContainer>
         <img
           src={landingImg}
           alt="Plataforma de estudos"
           className="hero-image"
         />
-        <div className="buttons-container">
-          <Link to="/study" className="study">
-            <img src={studyIcon} alt="Estudar" />
-            Estudar
-          </Link>
+        <ButtonsContainer>
+          <Button study>
+            <Link to="/study">
+              <img src={studyIcon} alt="Estudar" />
+              Estudar
+            </Link>
+          </Button>
+          <Button give_classes>
+            <Link to="/give-classes">
+              <img src={giveClasIcons} alt="Dar aulas" />
+              Dar aulas
+            </Link>
+          </Button>
 
-          <Link to="/give-classes" className="give-classes">
-            <img src={giveClasIcons} alt="Dar aulas" />
-            Dar aulas
-          </Link>
-
-        </div>
+        </ButtonsContainer>
         <span className="total-connections">
           Total de {totalConnections} conexões já realizadas <img src={purpleHeart} alt="Coração roxo" />
         </span>
-      </div>
-    </div>
+      </PageLandingContent>
+    </PageLanding>
   )
 }
 
