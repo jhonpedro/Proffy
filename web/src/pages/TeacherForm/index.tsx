@@ -6,9 +6,18 @@ import PageHeader from '../../components/PageHeader'
 import Input from '../../components/Input'
 import warningIcon from '../../assets/images/icons/warning.svg'
 
-import './styles.css'
 import Textarea from '../../components/TextArea'
 import Select from '../../components/Select'
+
+import {
+  PageTeacherForm,
+  MainPageTeacherForm,
+  Fieldset,
+  Legend,
+  Footer
+} from './style'
+
+// import './styles.css'
 
 function TeacherForm() {
   const [name, setName] = useState('')
@@ -67,15 +76,15 @@ function TeacherForm() {
   }
 
   return (
-    <div id="page-teacher-form" className="container">
+    <PageTeacherForm className="container">
       <PageHeader
         title="Que incrivel que você quer dar aulas."
         description="O primeiro passo é preencher esse formulário de inscrição"
       />
-      <main>
+      <MainPageTeacherForm>
         <form onSubmit={handleSubmit}>
-          <fieldset>
-            <legend>Seus dados</legend>
+          <Fieldset>
+            <Legend>Seus dados</Legend>
             <Input
               name="name"
               label="Nome completo"
@@ -100,10 +109,10 @@ function TeacherForm() {
               value={bio}
               onChange={event => setBio(event.target.value)}
             />
-          </fieldset>
+          </Fieldset>
 
-          <fieldset>
-            <legend>Sobre as aulas</legend>
+          <Fieldset>
+            <Legend>Sobre as aulas</Legend>
             <Select
               name="subject"
               label="Matéria"
@@ -131,15 +140,15 @@ function TeacherForm() {
               value={cost}
               onChange={event => setCost(event.target.value)}
             />
-          </fieldset>
+          </Fieldset>
 
-          <fieldset>
-            <legend>
+          <Fieldset>
+            <Legend>
               Horários que você pode dar aula
               <button onClick={addNewScheduleItem} type="button">
                 + Novo horário
               </button>
-            </legend>
+            </Legend>
             {scheduleItems.map((scheduleItem, index) => {
               return (
                 <div key={index} className="schedule-item">
@@ -175,9 +184,9 @@ function TeacherForm() {
                 </div>
               )
             })}
-          </fieldset>
+          </Fieldset>
 
-          <footer>
+          <Footer>
             <p>
               <img src={warningIcon} alt="Aviso Importante" />
               Importante! <br />
@@ -186,10 +195,10 @@ function TeacherForm() {
             <button type="submit">
               Salvar cadastro
             </button>
-          </footer>
+          </Footer>
         </form>
-      </main>
-    </div>
+      </MainPageTeacherForm>
+    </PageTeacherForm>
 
   )
 }
