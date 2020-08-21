@@ -12,15 +12,19 @@ export const PageTeacherForm = styled.div`
 export const MainPageTeacherForm = styled.main`
   background: var(--color-box-base);
   width: 100%;
-  max-width: 74rem;
   border-radius: 0.8rem;
-  margin: -3.2rem auto;
+  margin: -1.2rem auto;
   margin-bottom: 5rem;
   padding-top: 6.4rem;
   overflow: hidden;
 
   label {
     color: var(--color-text-complement);
+  }
+
+  @media (min-width: 1100px) {
+    max-width: 74rem;
+    margin: -5.5rem auto;
   }
 `
 
