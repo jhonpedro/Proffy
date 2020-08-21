@@ -14,8 +14,9 @@ export const PageLanding = styled.div`
 
 export const PageLandingContent = styled.div`
   > img {
-    width: 100%;
+    width: 95%;
   }
+
 
   @media (min-width: 1100px) {
     max-width: 1100px;
@@ -36,7 +37,6 @@ export const PageLandingContent = styled.div`
 
 export const LogoContainer = styled.div`
   text-align: center;
-  margin-bottom: 3.2rem;
 
   img {
     height: 10rem;
@@ -144,6 +144,7 @@ export const Button: any = styled.div`
 
 export const Span = styled.span`
   font-size: 1.4rem;
+  width: 100%;
 
   display: flex;
   align-items: center;

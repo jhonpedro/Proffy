@@ -16,7 +16,8 @@ import {
   PageLandingContent,
   LogoContainer,
   ButtonsContainer,
-  Button
+  Button,
+  Span
 } from './styles'
 
 function Landing() {
@@ -56,9 +57,9 @@ function Landing() {
           </Button>
 
         </ButtonsContainer>
-        <span className="total-connections">
+        <Span className="total-connections">
           Total de {totalConnections} conexões já realizadas <img src={purpleHeart} alt="Coração roxo" />
-        </span>
+        </Span>
       </PageLandingContent>
     </PageLanding>
   )
