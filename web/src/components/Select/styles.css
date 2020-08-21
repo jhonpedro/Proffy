@@ -33,3 +33,9 @@
   bottom: 0;
   border-radius: 0.8rem;
 }
+
+@media (min-width: 1100px) {
+  .select-block + .select-block {
+    margin-top: 0;
+  }
+}
