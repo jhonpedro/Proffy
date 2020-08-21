@@ -7,7 +7,13 @@ import TeacherItem, { Teacher } from '../../components/TeacherItem'
 import Input from '../../components/Input'
 import Select from '../../components/Select'
 
-import './styles.css'
+import {
+  PageTeacherList,
+  Form,
+  Main
+} from './styles'
+
+// import './styles.css'
 
 function TeacherList() {
   const [teachers, setTeachers] = useState([])
@@ -30,9 +36,9 @@ function TeacherList() {
   }
 
   return (
-    <div id="page-teacher-list" className="container">
+    <PageTeacherList className="container">
       <PageHeader title="Estes são os proffys disponíveis.">
-        <form className="search-teachers" onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
           <Select
             name="subject"
             label="Matéria"
@@ -82,15 +88,32 @@ function TeacherList() {
           <button type="submit">
             Buscar
           </button>
-        </form>
+        </Form>
       </PageHeader>
 
-      <main>
-        {teachers.map((teacher: Teacher) => {
+      <Main>
+        {/* {teachers.map((teacher: Teacher) => {
           return <TeacherItem key={teacher.id} teacher={teacher} />
-        })}
-      </main>
-    </div>
+        })} */}
+        <TeacherItem
+          teacher={{
+            id: 1,
+            name: 'Joao',
+            avatar: 'https://avatars1.githubusercontent.com/u/64690421?s=460&u=db4fb099e67cc2c146e5a161032a59cc90a36b7c&v=4',
+            whatsapp: '123-123-0',
+            bio: `
+            Uma bio interessante \n
+
+            Tipo bem interessante mesmo \n
+
+            *coisas interessantes*
+          `,
+            subject: 'Matemática',
+            cost: 110
+          }}
+        />
+      </Main>
+    </PageTeacherList>
   )
 }
 
