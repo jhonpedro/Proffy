@@ -2,7 +2,7 @@
 
 Follow the links for more information about each part of the project 👨‍💻:
 <br/>
-<p style="color: red">Heey, wait!</a> Look, i need to learn about some concepts and libs to continue with this project, soo everything y'll see here is under development 🛠.
+<p style="color: red">Heey, wait!</p> Look, i need to learn about some concepts and libs to continue with this project, soo everything y'll see here is under development 🛠.
 
 Let me list some things i likely need to learn just for finishing the 2.0 version of Proffy.
 
