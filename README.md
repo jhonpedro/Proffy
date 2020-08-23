@@ -14,7 +14,7 @@ Unform -> Lib for creating powerfull forms<br/>
 Multer -> Lib for file upload<br/>
 Need to learn about Context in React too, learn more about hooks and React Native, what i know now about RN is just what Diego developed in the NLW.<br/>
 And about some patterns in the project. Learn about eslint, prettier, husky, lint-staged...
-<br/>
+<br/><br/>
 I probably could finish the project with what i know now, but i think i would struggle with some logics, and i think those things up here will help me to finish more easily the project.
 <br/>
 If you want to see the layout click <a href="https://www.notion.so/Vers-o-2-0-Proffy-eefca1b981694cd0a895613bc6235970">here</a>
