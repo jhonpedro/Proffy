@@ -2,21 +2,21 @@ import { Request, Response } from 'express'
 import db from '../database/connection'
 
 export default {
-  async index(req: Request, res: Response) {
-    const totalConnections = await db('connections').count('* as total')
+	async index(req: Request, res: Response) {
+		const totalConnections = await db('connections').count('* as total')
 
-    const { total } = totalConnections[0]
+		const { total } = totalConnections[0]
 
-    return res.status(200).json({ total })
-  },
+		return res.status(200).json({ total })
+	},
 
-  async create(req: Request, res: Response) {
-    const { user_id } = req.body
+	async create(req: Request, res: Response) {
+		const { user_id } = req.body
 
-    await db('connections').insert({
-      user_id
-    })
+		await db('connections').insert({
+			user_id,
+		})
 
-    return res.sendStatus(201)
-  }
+		return res.sendStatus(201)
+	},
 }
