@@ -65,7 +65,7 @@ export default {
         })
 
         transp.sendMail({
-          from: 'Proffy app <proffyapp@gmail.com>',
+          from: `Proffy app <${process.env.EMAIL_USER}>`,
           to: email,
           subject: 'Redefinição de senha Profyy',
           text: `
