@@ -9,12 +9,6 @@ interface createUserProps {
 }
 
 export default async function createUser({ email, last_name, name, password }: createUserProps) {
-
-  const userInTable = await findUserByEmailRepository(email)
-  if (userInTable) {
-    return null
-  }
-
   const [createdUser] = await Database('users').insert({
     name,
     last_name,
