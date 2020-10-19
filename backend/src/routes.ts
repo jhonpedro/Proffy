@@ -5,9 +5,9 @@ import classesControler from './controllers/ClassesControler'
 import connectionsController from './controllers/ConnectionsController'
 import userController from './controllers/UsersController'
 
-routes.post('/user', userController.create)
+routes.post('/user', userController.store)
 
-routes.post('/session', userController.authenticate)
+routes.post('/user/session', userController.session)
 
 routes.post('/forgot-password-email', userController.forgotPasswordEmail)
 routes.post('/forgot-password-change', userController.forgotPasswordChange)
