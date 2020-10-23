@@ -7,9 +7,10 @@ import { InputBlock, InputElement, Label } from './styles'
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 	label: string
 	name: string
+	type?: string
 }
 
-const Input: React.FC<InputProps> = ({ label, name, ...rest }) => {
+const Input: React.FC<InputProps> = ({ label, name, type, ...rest }) => {
 	const [labelAbove, setLabelAbove] = useState(false)
 
 	function handleFocus(event: FocusEvent<HTMLInputElement>) {
@@ -23,7 +24,12 @@ const Input: React.FC<InputProps> = ({ label, name, ...rest }) => {
 	return (
 		<InputBlock>
 			<Label isUp={labelAbove}>{label}</Label>
-			<InputElement onBlur={handleFocus} type="text" {...rest} id={name} />
+			<InputElement
+				onBlur={handleFocus}
+				type={type ? type : 'text'}
+				{...rest}
+				id={name}
+			/>
 		</InputBlock>
 	)
 }
