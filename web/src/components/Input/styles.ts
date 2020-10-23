@@ -1,8 +1,18 @@
-import styled, { css } from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
 
 interface WrapperProps {
 	isUp?: boolean
 }
+
+const expand = keyframes`
+  from {
+    height: 0;
+  }
+
+  to {
+    height: calc(100% - 2rem);
+  }
+`
 
 export const InputBlock = styled.div`
 	position: relative;
@@ -18,6 +28,7 @@ export const InputBlock = styled.div`
 		top: 1rem;
 		bottom: 1rem;
 		border-radius: 1rem;
+		animation: ${expand} 0.5s ease-in-out;
 	}
 
 	:focus-within label {
