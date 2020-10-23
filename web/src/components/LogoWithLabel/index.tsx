@@ -8,15 +8,13 @@ interface LogoSideProps {
 	textComplement?: string
 }
 
-const LogoAside: React.FC<LogoSideProps> = (
-	{ textComplement } = {
-		textComplement: 'Sua plataforma de estudos online',
-	}
-) => {
+const LogoAside: React.FC<LogoSideProps> = ({ textComplement }) => {
 	return (
 		<LogoArea>
 			<img src={logoImg} alt="Logo Proffy" />
-			<p>{textComplement}</p>
+			<p>
+				{textComplement ? textComplement : 'Sua plataforma de estudos online'}
+			</p>
 		</LogoArea>
 	)
 }
