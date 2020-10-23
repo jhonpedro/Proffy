@@ -1,16 +1,15 @@
 import React from 'react'
-import Input from '../../components/Input'
+import { Link } from 'react-router-dom'
 
-import logoImg from '../../assets/images/logo.svg'
-import { SingInContainer, LogoArea, SingInBox } from './styles'
+import Input from '../../components/Input'
+import LogoWithLabel from '../../components/LogoWithLabel'
+
+import { SingInContainer, SingInBox } from './styles'
 
 function SingIn() {
 	return (
 		<SingInContainer>
-			<LogoArea>
-				<img src={logoImg} alt="Logo Proffy" />
-				<p>Sua plataforma de estudos online</p>
-			</LogoArea>
+			<LogoWithLabel />
 			<SingInBox>
 				<strong>Fazer login</strong>
 				<form onSubmit={() => {}}>
@@ -28,7 +27,7 @@ function SingIn() {
 				<footer>
 					<p>
 						Não tem conta? <br />
-						<a href="">Cadastre-se</a>
+						<Link to="/sing-up">Cadastre-se</Link>
 					</p>
 					<small>É de graça ❤</small>
 				</footer>
