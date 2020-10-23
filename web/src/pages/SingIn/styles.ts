@@ -25,7 +25,7 @@ export const SingInBox = styled.main`
 	> strong {
 		margin-right: auto;
 		margin-bottom: 1.5rem;
-		font-size: 2.6rem;
+		font-size: 3.6rem;
 		color: var(--color-text-title);
 
 		@media (max-width: 700px) {
@@ -83,7 +83,7 @@ export const SingInBox = styled.main`
 			}
 		}
 
-		button {
+		/* button {
 			padding: 1rem 2rem;
 			border: 0;
 			border-radius: 1rem;
@@ -95,7 +95,7 @@ export const SingInBox = styled.main`
 			:hover {
 				background-color: var(--color-secundary-dark);
 			}
-		}
+		} */
 	}
 
 	footer {

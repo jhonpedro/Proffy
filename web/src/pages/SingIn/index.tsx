@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 import Input from '../../components/Input'
 import LogoWithLabel from '../../components/LogoWithLabel'
+import Button from '../../components/Button'
 
 import { SingInContainer, SingInBox } from './styles'
 
@@ -22,7 +23,7 @@ function SingIn() {
 						</label>
 						<a href="">Esqueci minha senha</a>
 					</div>
-					<button type="submit">Entrar</button>
+					<Button type="submit">Entrar</Button>
 				</form>
 				<footer>
 					<p>
