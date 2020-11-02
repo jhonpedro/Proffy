@@ -17,11 +17,22 @@ export const SingUpContainer = styled.div`
 export const SingUpBox = styled.main`
 	width: 36rem;
 	margin: 0 auto;
+	position: relative;
 
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+
+	> img {
+		position: absolute;
+		top: 10px;
+		align-self: flex-start;
+		cursor: pointer;
+		@media (max-height: 500px) {
+			left: -55px;
+		}
+	}
 
 	strong {
 		margin-right: auto;
