@@ -21,7 +21,7 @@ function SingIn() {
 							<input type="checkbox" />
 							Lembrar-me
 						</label>
-						<a href="">Esqueci minha senha</a>
+						<Link to="/forgot-password">Esqueci minha senha</Link>
 					</div>
 					<Button type="submit">Entrar</Button>
 				</form>
