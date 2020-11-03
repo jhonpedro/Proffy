@@ -5,6 +5,7 @@ import SingIn from './pages/SingIn'
 import SingUp from './pages/SingUp'
 import TeacherList from './pages/TeacherList'
 import TeacherForm from './pages/TeacherForm'
+import ForgotPassword from './pages/ForgotPassword'
 
 function Routes() {
 	return (
@@ -14,6 +15,9 @@ function Routes() {
 			</Route>
 			<Route path="/sing-up" exact>
 				<SingUp />
+			</Route>
+			<Route path="/forgot-password">
+				<ForgotPassword />
 			</Route>
 			<Route path="/study" exact>
 				<TeacherList />
