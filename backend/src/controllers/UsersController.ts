@@ -126,10 +126,9 @@ export default {
 				id: tokenPayload.id,
 				password: encryptedPassword,
 			})
-
 			await removeForgotPassword_tokenRepository({ user_id: tokenPayload.id })
 
-			return res.status(200)
+			return res.sendStatus(200)
 		} catch (error) {
 			console.log(error)
 			return res.status(401).json({ error: 'token verification failed' })
