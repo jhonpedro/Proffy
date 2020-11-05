@@ -5,6 +5,7 @@ import SingIn from './pages/SingIn'
 import SingUp from './pages/SingUp'
 import TeacherList from './pages/TeacherList'
 import TeacherForm from './pages/TeacherForm'
+import ChangePassword from './pages/ChangePassword'
 import ForgotPassword from './pages/ForgotPassword'
 
 function Routes() {
@@ -19,6 +20,10 @@ function Routes() {
 			<Route path="/forgot-password">
 				<ForgotPassword />
 			</Route>
+			<Route path="/change-password/:token">
+				<ChangePassword />
+			</Route>
+
 			<Route path="/study" exact>
 				<TeacherList />
 			</Route>
