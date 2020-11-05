@@ -2,13 +2,13 @@ import React from 'react'
 
 import { ButtonComponent } from './styles'
 
-interface ButtonProps {
-	type?: 'button' | 'submit' | 'reset'
-}
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>
 
 const Button: React.FC<ButtonProps> = ({ children, type, ...rest }) => {
 	return (
-		<ButtonComponent type={type ? type : 'button'}>{children}</ButtonComponent>
+		<ButtonComponent type={type ? type : 'button'} {...rest}>
+			{children}
+		</ButtonComponent>
 	)
 }
 
