@@ -10,10 +10,6 @@ import Button from '../../components/Button'
 
 import { SingInContainer, SingInBox } from './styles'
 
-interface Token {
-	data: [string]
-}
-
 function SingIn() {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
@@ -80,7 +76,7 @@ function SingIn() {
 					/>
 					<Input
 						label="Senha"
-						name="senha"
+						name="password"
 						type="password"
 						value={password}
 						onChange={handleChangePassword}
