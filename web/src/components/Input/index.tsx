@@ -23,7 +23,9 @@ const Input: React.FC<InputProps> = ({ label, name, type, ...rest }) => {
 
 	return (
 		<InputBlock>
-			<Label isUp={labelAbove}>{label}</Label>
+			<Label isUp={labelAbove} htmlFor={`${name}`}>
+				{label}
+			</Label>
 			<InputElement
 				onBlur={handleFocus}
 				type={type ? type : 'text'}
