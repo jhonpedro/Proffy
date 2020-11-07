@@ -1,5 +1,4 @@
 import Database from '../../database/connection'
-import { findUserByEmailRepository } from '.'
 
 interface createUserProps {
 	name: string
