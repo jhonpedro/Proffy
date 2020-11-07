@@ -2,12 +2,18 @@ import { Request, Response } from 'express'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import nodemailer from 'nodemailer'
+import multer from 'multer'
+import sharp from 'sharp'
+import { resolve } from 'path'
+import fs from 'fs'
 
 import { emailValidator } from '../utils/helpers'
 import {
 	findUserByEmailRepository,
 	createUserRepository,
 	changeUserPasswordRepository,
+	findAndDeleteUserPhoto,
+	changeUserPhoto,
 } from '../repositories/User'
 import {
 	createForgotPassword_tokenRepository,
@@ -15,8 +21,10 @@ import {
 	searchForgotPassword_tokenRepository,
 } from '../repositories/forgotPassword_token'
 import { InvalidParamError } from '../utils/errors'
+import uploadConfig from '../config/upload'
 
 const secret = process.env.JWT_SECRET as string
+const upload = multer(uploadConfig).single('photo')
 
 export default {
 	async store(req: Request, res: Response) {
@@ -44,6 +52,56 @@ export default {
 			console.log(error)
 			return res.status(401)
 		}
+	},
+
+	async storePhoto(req: Request, res: Response) {
+		return upload(req, res, async (error: any) => {
+			if (error) {
+				return res.status(403).json({
+					message: 'Error in file upload',
+				})
+			}
+
+			const { id } = req.body
+
+			try {
+				await sharp(req.file.path)
+					.resize(180, 180)
+					.toFile(
+						resolve(
+							__dirname,
+							'..',
+							'..',
+							'uploads',
+							'resized',
+							`${req.file.filename}`
+						)
+					)
+
+				fs.unlinkSync(req.file.path)
+
+				const { photo: userPhotoName } = await findAndDeleteUserPhoto(id)
+
+				fs.unlink(
+					resolve(
+						__dirname,
+						'..',
+						'..',
+						'uploads',
+						'resized',
+						`${userPhotoName}`
+					),
+					async (err) => {
+						await changeUserPhoto(id, req.file.filename)
+
+						return res.sendStatus(200)
+					}
+				)
+			} catch (error) {
+				console.log(error)
+				return res.sendStatus(400)
+			}
+		})
 	},
 
 	async forgotPasswordEmail(req: Request, res: Response) {
