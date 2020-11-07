@@ -2,3 +2,4 @@
 *.log
 .env
 /src/database/deprecated
+/uploads/resized/*
