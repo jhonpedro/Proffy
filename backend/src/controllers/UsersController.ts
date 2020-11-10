@@ -54,7 +54,7 @@ export default {
 		}
 	},
 
-	async storePhoto(req: Request, res: Response) {
+	async updatePhoto(req: Request, res: Response) {
 		return upload(req, res, async (error: any) => {
 			if (error) {
 				return res.status(403).json({
