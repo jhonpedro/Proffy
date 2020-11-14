@@ -65,7 +65,7 @@ export default {
 		}
 
 		try {
-			await updateUser({ name, last_name, whatsapp, id: 1 })
+			await updateUser({ name, last_name, whatsapp, id: +req.user.id })
 			return res.sendStatus(200)
 		} catch (error) {
 			console.log(error)
@@ -239,14 +239,14 @@ export default {
 				secret,
 				{ expiresIn: '2h' },
 				(error, token) => {
-					if (error) return res.status(500)
+					if (error) return res.sendStatus(500)
 
-					return res.status(200).json({ token: token })
+					return res.status(200).json({ token })
 				}
 			)
 		} catch (error) {
 			console.log(error)
-			return res.status(401)
+			return res.sendStatus(401)
 		}
 	},
 }
