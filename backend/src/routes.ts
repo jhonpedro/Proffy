@@ -8,10 +8,10 @@ import userController from './controllers/UsersController'
 routes.post('/user', userController.store)
 
 routes.post('/user/session', userController.session)
-routes.post('/user/photo', userController.updatePhoto)
+routes.put('/user/photo', userController.updatePhoto)
 
 routes.post('/forgot-password-email', userController.forgotPasswordEmail)
-routes.post('/forgot-password-change', userController.forgotPasswordChange)
+routes.put('/forgot-password-change', userController.forgotPasswordChange)
 
 routes.get('/classes', classesControler.index)
 routes.post('/classes', classesControler.create)
