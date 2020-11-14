@@ -13,7 +13,7 @@ export default async function updateUser({
 	whatsapp,
 	id,
 }: UpdateUserProps) {
-	await Database('user').update({ name, last_name, whatsapp }).where({ id })
+	await Database('users').update({ name, last_name, whatsapp }).where({ id })
 
 	return true
 }
