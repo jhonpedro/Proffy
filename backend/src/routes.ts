@@ -1,14 +1,17 @@
 import express from 'express'
-const routes = express.Router()
 
 import classesControler from './controllers/ClassesControler'
 import connectionsController from './controllers/ConnectionsController'
 import userController from './controllers/UsersController'
+import loginRequired from './middlewares/auth'
+
+const routes = express.Router()
 
 routes.post('/user', userController.store)
+routes.put('/user', loginRequired, userController.update)
 
 routes.post('/user/session', userController.session)
-routes.put('/user/photo', userController.updatePhoto)
+routes.put('/user/photo', loginRequired, userController.updatePhoto)
 
 routes.post('/forgot-password-email', userController.forgotPasswordEmail)
 routes.put('/forgot-password-change', userController.forgotPasswordChange)
