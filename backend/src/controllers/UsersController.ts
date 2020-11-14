@@ -14,6 +14,7 @@ import {
 	changeUserPasswordRepository,
 	findAndDeleteUserPhoto,
 	changeUserPhoto,
+	updateUser,
 } from '../repositories/User'
 import {
 	createForgotPassword_tokenRepository,
@@ -54,6 +55,24 @@ export default {
 		}
 	},
 
+	async update(req: Request, res: Response) {
+		const name = req.body.name as string
+		const last_name = req.body.last_name as string
+		const whatsapp = req.body.whatsapp as string
+
+		if (!name || !last_name || !whatsapp) {
+			return res.status(400).json({ message: 'Missing params' })
+		}
+
+		try {
+			await updateUser({ name, last_name, whatsapp, id: 1 })
+			return res.sendStatus(200)
+		} catch (error) {
+			console.log(error)
+			return res.sendStatus(500)
+		}
+	},
+
 	async updatePhoto(req: Request, res: Response) {
 		return upload(req, res, async (error: any) => {
 			if (error) {
@@ -62,7 +81,7 @@ export default {
 				})
 			}
 
-			const { id } = req.body
+			const id = +req.user.id
 
 			try {
 				await sharp(req.file.path)
@@ -195,7 +214,6 @@ export default {
 
 	async session(req: Request, res: Response) {
 		const { email, password } = req.body
-
 		try {
 			const isEmailValid = await emailValidator(email)
 			if (!isEmailValid) {
