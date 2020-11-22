@@ -30,7 +30,6 @@ export default async function getBySubjectOrTime({
 		response.whereRaw('cs.start >= 0')
 		response.whereRaw('cs.end <= 1499')
 	}
-	console.log(start, end)
 	return await response.select([
 		'us.name',
 		'us.last_name',
