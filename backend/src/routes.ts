@@ -17,7 +17,7 @@ routes.post('/forgot-password-email', userController.forgotPasswordEmail)
 routes.put('/forgot-password-change', userController.forgotPasswordChange)
 
 routes.get('/classes', classesControler.index)
-routes.post('/classes', classesControler.create)
+routes.post('/classes', loginRequired, classesControler.create)
 
 routes.post('/connections', connectionsController.create)
 routes.get('/connections', connectionsController.index)
