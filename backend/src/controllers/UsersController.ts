@@ -73,6 +73,30 @@ export default {
 		}
 	},
 
+	async show(req: Request, res: Response) {
+		const { email } = req.params
+
+		try {
+			const {
+				name,
+				last_name,
+				whatsapp,
+				photo,
+			} = await findUserByEmailRepository(email)
+			const user = {
+				name,
+				last_name,
+				whatsapp,
+				photo,
+			}
+
+			return res.status(200).json(user)
+		} catch (error) {
+			console.log(error)
+			return res.sendStatus(404)
+		}
+	},
+
 	async updatePhoto(req: Request, res: Response) {
 		return upload(req, res, async (error: any) => {
 			if (error) {
@@ -133,21 +157,21 @@ export default {
 				throw new InvalidParamError('Email')
 			}
 
-			const userInDataBase = await findUserByEmailRepository(email)
+			const { id } = await findUserByEmailRepository(email)
 
-			if (!userInDataBase) {
+			if (!id) {
 				return res.status(401)
 			}
 
 			jwt.sign(
-				{ id: userInDataBase.id },
+				{ id: id },
 				secret,
 				{ expiresIn: '1h' },
 				async (error, token: any) => {
 					if (error) return res.status(500)
 
 					await createForgotPassword_tokenRepository({
-						user_id: userInDataBase.id,
+						user_id: id,
 						token,
 					})
 
@@ -219,31 +243,26 @@ export default {
 			if (!isEmailValid) {
 				throw new InvalidParamError('Email')
 			}
-			const userInDataBase = await findUserByEmailRepository(email)
+			const {
+				id,
+				password: passwordInDataBase,
+			} = await findUserByEmailRepository(email)
 
-			if (!userInDataBase) {
+			if (!id || !passwordInDataBase) {
 				throw new InvalidParamError('No user found')
 			}
 
-			const isPasswordCorrect = bcrypt.compareSync(
-				password,
-				userInDataBase.password
-			)
+			const isPasswordCorrect = bcrypt.compareSync(password, passwordInDataBase)
 
 			if (!isPasswordCorrect) {
 				throw new InvalidParamError('Password incorrect')
 			}
 
-			jwt.sign(
-				{ id: userInDataBase.id },
-				secret,
-				{ expiresIn: '2h' },
-				(error, token) => {
-					if (error) return res.sendStatus(500)
+			jwt.sign({ id }, secret, { expiresIn: '2h' }, (error, token) => {
+				if (error) return res.sendStatus(500)
 
-					return res.status(200).json({ token })
-				}
-			)
+				return res.status(200).json({ token })
+			})
 		} catch (error) {
 			console.log(error)
 			return res.sendStatus(401)
