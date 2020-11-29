@@ -245,8 +245,14 @@ export default {
 			}
 			const {
 				id,
+				name,
+				last_name,
+				photo,
+				whatsapp,
 				password: passwordInDataBase,
 			} = await findUserByEmailRepository(email)
+
+			const user = { id, name, last_name, photo, whatsapp }
 
 			if (!id || !passwordInDataBase) {
 				throw new InvalidParamError('No user found')
@@ -261,7 +267,7 @@ export default {
 			jwt.sign({ id }, secret, { expiresIn: '2h' }, (error, token) => {
 				if (error) return res.sendStatus(500)
 
-				return res.status(200).json({ token })
+				return res.status(200).json({ token, user })
 			})
 		} catch (error) {
 			console.log(error)
