@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import routes from './routes'
 import dotenv from 'dotenv'
+import { resolve } from 'path'
 
 class App {
 	app: express.Application
@@ -16,6 +17,10 @@ class App {
 	middlewares() {
 		this.app.use(cors())
 		this.app.use(express.json())
+		this.app.use(
+			'/photo/',
+			express.static(resolve(__dirname, '..', 'uploads', 'resized'))
+		)
 	}
 
 	routes() {
