@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
-import {FaLaugh} from 'react-icons/fa'
+import { FaLaugh } from 'react-icons/fa'
 import axios from '../../services/axios'
 
 import { User, useAuth } from '../../hooks/auth'
@@ -25,12 +25,12 @@ import {
 
 function Landing() {
 	const { push } = useHistory()
-	const {getUser} = useAuth()
+	const { getUser } = useAuth()
 	const [totalConnections, setTotalConnections] = useState(0)
 	const [user] = useState<User>(() => {
 		const userLocalstorage = getUser()
 
-		if(!userLocalstorage){
+		if (!userLocalstorage) {
 			push('/sing-in')
 			return {} as User
 		}
@@ -39,54 +39,54 @@ function Landing() {
 	})
 
 	useEffect(() => {
-		axios.get('/connections').then((res: any) => {
-			const { total } = res.data
-			setTotalConnections(total)
-		})
+		// axios.get('/connections').then((res: any) => {
+		// 	const { total } = res.data
+		// 	setTotalConnections(total)
+		// })
 	}, [totalConnections, user])
 
 	return (
 		<PageLanding>
-			<PageLandingContent className="container">
-					{user ? (
-						<Header>
-						<div className="user">
+			<PageLandingContent className='container'>
+				{user ? (
+					<Header>
+						<div className='user'>
 							{user.photo ? (
 								<img src={user.photo} alt={`Foto de ${user.name}`} />
-								) : (
-									<FaLaugh size="4rem"/>
+							) : (
+								<FaLaugh size='4rem' />
 							)}
 							<span>{user.name + ' ' + user.last_name}</span>
 						</div>
-						<div className="hamburger"></div>
-				</Header>
-					) : null}
+						<div className='hamburger'></div>
+					</Header>
+				) : null}
 				<LogoContainer>
-					<img src={logoImg} alt="Proffy" />
+					<img src={logoImg} alt='Proffy' />
 					<h2>Sua plataforma de estudos online</h2>
 				</LogoContainer>
 				<img
 					src={landingImg}
-					alt="Plataforma de estudos"
-					className="hero-image"
+					alt='Plataforma de estudos'
+					className='hero-image'
 				/>
 				<ButtonsContainer>
 					<Button study>
-						<Link to="/study">
-							<img src={studyIcon} alt="Estudar" />
+						<Link to='/study'>
+							<img src={studyIcon} alt='Estudar' />
 							Estudar
 						</Link>
 					</Button>
 					<Button give_classes>
-						<Link to="/give-classes">
-							<img src={giveClasIcons} alt="Dar aulas" />
+						<Link to='/give-classes'>
+							<img src={giveClasIcons} alt='Dar aulas' />
 							Dar aulas
 						</Link>
 					</Button>
 				</ButtonsContainer>
-				<Span className="total-connections">
+				<Span className='total-connections'>
 					Total de {totalConnections} conexões já realizadas{' '}
-					<img src={purpleHeart} alt="Coração roxo" />
+					<img src={purpleHeart} alt='Coração roxo' />
 				</Span>
 			</PageLandingContent>
 		</PageLanding>

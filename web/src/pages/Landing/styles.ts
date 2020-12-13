@@ -30,9 +30,10 @@ export const PageLandingContent = styled.div`
 	@media (min-width: 1100px) {
 		max-width: 1100px;
 		display: grid;
-		grid-template-rows: 350px 1fr;
+		grid-template-rows: 10rem 1fr 1fr;
 		grid-template-columns: 2fr 1fr 1fr;
 		grid-template-areas:
+			'user user user'
 			'logo hero hero'
 			'buttons buttons total';
 
@@ -46,9 +47,10 @@ export const Header = styled.header`
 	width: 100%;
 	height: 10%;
 	padding: 0 2rem;
-	border: 1px solid red;
 	position: absolute;
 	top: 0;
+	margin-bottom: 10%;
+	grid-area: user;
 
 	display: flex;
 	justify-content: space-between;
@@ -96,6 +98,15 @@ export const Header = styled.header`
 			width: 4rem;
 		}
 	}
+
+	@media (min-width: 1100px) {
+		position: static;
+		margin-bottom: 0;
+
+		.user {
+			width: 70%;
+		}
+	}
 `
 
 export const LogoContainer = styled.div`
@@ -136,6 +147,7 @@ export const LogoContainer = styled.div`
 `
 
 export const ButtonsContainer = styled.div`
+	width: 100%;
 	display: flex;
 	justify-content: center;
 	margin: 3.2rem 0;
@@ -152,9 +164,11 @@ export const ButtonsContainer = styled.div`
 
 export const Button: any = styled.div`
 	border-radius: 0.8rem;
+	max-width: 21rem;
+	width: 100%;
 
 	a {
-		width: 21rem;
+		width: 100%;
 		height: 9.4rem;
 		font: 700 2rem Archivo;
 
@@ -175,7 +189,6 @@ export const Button: any = styled.div`
 
 	@media (min-width: 1100px) {
 		a {
-			width: 30rem;
 			height: 10.4rem;
 			font-size: 2.4rem;
 
