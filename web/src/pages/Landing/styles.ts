@@ -17,9 +17,11 @@ export const PageLandingContent = styled.div`
 	> img {
 		width: 60%;
 		@media (min-width: 1100px) {
-			width: 80%;
+			width: 100%;
+			padding-right: 9rem;
 		}
 	}
+	width: 100%;
 	height: 100%;
 	display: flex;
 	flex-direction: column;
@@ -28,14 +30,13 @@ export const PageLandingContent = styled.div`
 	position: relative;
 
 	@media (min-width: 1100px) {
-		max-width: 1100px;
 		display: grid;
 		grid-template-rows: 10rem 1fr 1fr;
 		grid-template-columns: 2fr 1fr 1fr;
 		grid-template-areas:
 			'user user user'
 			'logo hero hero'
-			'buttons buttons total';
+			'total buttons buttons';
 
 		> img {
 			grid-area: hero;
@@ -84,7 +85,7 @@ export const Header = styled.header`
 	}
 
 	.user {
-		width: 50%;
+		width: 100%;
 
 		display: flex;
 		align-items: center;
@@ -102,9 +103,14 @@ export const Header = styled.header`
 	@media (min-width: 1100px) {
 		position: static;
 		margin-bottom: 0;
+		padding: 0;
+		height: 100%;
+		margin: 0 auto;
+		width: 100%;
+		padding: 0 9rem;
 
 		.user {
-			width: 70%;
+			width: 100%;
 		}
 	}
 `
@@ -112,6 +118,7 @@ export const Header = styled.header`
 export const LogoContainer = styled.div`
 	text-align: center;
 	margin-top: 2.5rem;
+	padding-left: 9rem;
 
 	img {
 		height: 6rem;
@@ -153,8 +160,11 @@ export const ButtonsContainer = styled.div`
 	margin: 3.2rem 0;
 
 	@media (min-width: 1100px) {
+		height: 100%;
 		grid-area: buttons;
-		justify-content: flex-start;
+		justify-content: start;
+		align-items: center;
+		background-color: var(--color-box-footer);
 
 		a {
 			font-size: 2.4rem;
@@ -164,8 +174,13 @@ export const ButtonsContainer = styled.div`
 
 export const Button: any = styled.div`
 	border-radius: 0.8rem;
-	max-width: 21rem;
 	width: 100%;
+	max-width: 21rem;
+	height: 100%;
+	max-height: 14rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 
 	a {
 		width: 100%;
@@ -188,6 +203,9 @@ export const Button: any = styled.div`
 	}
 
 	@media (min-width: 1100px) {
+		width: 45%;
+		max-width: 45%;
+
 		a {
 			height: 10.4rem;
 			font-size: 2.4rem;
@@ -223,19 +241,48 @@ export const Button: any = styled.div`
 `
 
 export const Span = styled.span`
-	font-size: 1.4rem;
 	width: 100%;
-
 	display: flex;
-	align-items: center;
-	justify-content: center;
+	justify-content: space-between;
 
-	img {
-		margin-left: 0.8rem;
+	.awelcome {
+		display: none;
+		font-size: 1.9rem;
+		line-height: 1.5rem;
+
+		flex-direction: column;
+	}
+
+	.connections {
+		font-size: 1.4rem;
+		width: 100%;
+		margin: 0 auto;
+		display: flex;
+		justify-content: center;
+
+		img {
+			margin-left: 0.8rem;
+		}
 	}
 
 	@media (min-width: 1100px) {
 		grid-area: total;
-		justify-self: end;
+		background-color: var(--color-box-footer);
+		height: 100%;
+
+		.connections {
+			width: 40%;
+			height: 100%;
+			justify-self: end;
+			align-items: center;
+			margin: 0 5% 0 0;
+		}
+		.awelcome {
+			width: 60%;
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
 	}
 `

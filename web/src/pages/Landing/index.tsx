@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 import { FaLaugh } from 'react-icons/fa'
-import axios from '../../services/axios'
 
 import { User, useAuth } from '../../hooks/auth'
 import logoImg from '../../assets/images/logo.svg'
@@ -85,8 +84,14 @@ function Landing() {
 					</Button>
 				</ButtonsContainer>
 				<Span className='total-connections'>
-					Total de {totalConnections} conexões já realizadas{' '}
-					<img src={purpleHeart} alt='Coração roxo' />
+					<div className='awelcome'>
+						Seja bem-vindo.
+						<strong>O que deseja fazer?</strong>
+					</div>
+					<div className='connections'>
+						Total de {totalConnections} conexões já realizadas{' '}
+						<img src={purpleHeart} alt='Coração roxo' />
+					</div>
 				</Span>
 			</PageLandingContent>
 		</PageLanding>
