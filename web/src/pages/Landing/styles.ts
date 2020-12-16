@@ -164,7 +164,7 @@ export const ButtonsContainer = styled.div`
 		grid-area: buttons;
 		justify-content: start;
 		align-items: center;
-		background-color: var(--color-box-footer);
+		background-color: var(--color-background);
 
 		a {
 			font-size: 2.4rem;
@@ -249,6 +249,7 @@ export const Span = styled.span`
 		display: none;
 		font-size: 1.9rem;
 		line-height: 1.5rem;
+		color: var(--color-text-base);
 
 		flex-direction: column;
 	}
@@ -267,7 +268,7 @@ export const Span = styled.span`
 
 	@media (min-width: 1100px) {
 		grid-area: total;
-		background-color: var(--color-box-footer);
+		background-color: var(--color-background);
 		height: 100%;
 
 		.connections {
