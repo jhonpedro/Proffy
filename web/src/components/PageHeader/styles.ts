@@ -11,18 +11,19 @@ export const PageHeaderElement = styled.header`
 `
 
 export const TopBar = styled.div`
-	width: 90%;
-	margin: 0 auto;
+	width: 100%;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	color: var(--color-text-in-primary);
-	padding: 1.6rem 0;
-	cursor: pointer;
+	padding: 1.6rem;
+	background-color: var(--color-primary-dark);
+	border-bottom: 2px solid var(--color-primary-darker);
 
 	span {
 		height: 3.2rem;
 		transition: opacity 0.2s;
+		cursor: pointer;
 	}
 
 	span:hover {
@@ -34,7 +35,7 @@ export const TopBar = styled.div`
 	}
 
 	@media (min-width: 1100px) {
-		max-width: 1100px;
+		padding: 1.6rem 10%;
 	}
 `
 

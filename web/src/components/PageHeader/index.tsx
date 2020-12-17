@@ -10,6 +10,7 @@ import { PageHeaderElement, TopBar, HeaderContent } from './styles'
 
 interface PageHeaderProps {
 	title: string
+	middleTitleText: string
 	description?: string
 	children?: React.ReactChild
 }
@@ -17,6 +18,7 @@ interface PageHeaderProps {
 const PageHeader: React.FC<PageHeaderProps> = ({
 	title,
 	description,
+	middleTitleText,
 	children: Component,
 }) => {
 	const { goBack } = useHistory()
@@ -32,6 +34,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
 				<span onClick={handleGoBack}>
 					<img src={backIcon} alt='Voltar' />
 				</span>
+				<span>{middleTitleText}</span>
 				<img src={logoImg} alt='Logo Proffy' />
 			</TopBar>
 			<HeaderContent>
