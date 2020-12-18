@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState } from 'react'
 import axios from '../services/axios'
 
-interface User {
+export interface User {
 	id: number
 	name: string
 	last_name: string
@@ -11,7 +11,7 @@ interface User {
 
 interface AuthContextData {
 	token: string
-	singIn(email: string, password: string, remember: boolean): void
+	singIn(email: string, password: string, remember: boolean): Promise<void>
 	getUser(): User | undefined
 }
 
@@ -52,7 +52,6 @@ const AuthProvider: React.FC = ({ children }) => {
 	})
 
 	async function singIn(email: string, password: string, remember: boolean) {
-		console.log('a')
 		const response = await axios.post<SessionPostProps>('/user/session', {
 			email,
 			password,
