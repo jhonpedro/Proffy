@@ -2,18 +2,21 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import * as Yup from 'yup'
 import { toast } from 'react-toastify'
-import axios from '../../services/axios'
+import { useHistory } from 'react-router-dom'
 
 import Input from '../../components/Input'
 import LogoWithLabel from '../../components/LogoWithLabel'
 import Button from '../../components/Button'
+import { useAuth } from '../../hooks/auth'
 
 import { SingInContainer, SingInBox } from './styles'
 
 function SingIn() {
+	const { push } = useHistory()
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const [remember, setRemember] = useState(false)
+	const { singIn } = useAuth()
 
 	async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
 		event.preventDefault()
@@ -34,14 +37,9 @@ function SingIn() {
 				{ abortEarly: false }
 			)
 
-			const response = await axios.post('/user/session', { email, password })
+			await singIn(email, password, remember)
 
-			const { token } = response?.data as { token: string }
-
-			axios.defaults.headers.Authorization = `Bearer ${token}`
-			if (remember) {
-				localStorage.setItem('user', JSON.stringify({ token }))
-			}
+			push('/')
 		} catch (error) {
 			if (error.name === 'ValidationError') {
 				error?.errors.map((err: Yup.ValidationError) => toast.error(err))
@@ -68,36 +66,36 @@ function SingIn() {
 				<strong>Fazer login</strong>
 				<form onSubmit={handleSubmit}>
 					<Input
-						label="E-mail"
-						name="email"
-						type="text"
+						label='E-mail'
+						name='email'
+						type='text'
 						value={email}
 						onChange={handleChangeEmail}
 					/>
 					<Input
-						label="Senha"
-						name="password"
-						type="password"
+						label='Senha'
+						name='password'
+						type='password'
 						value={password}
 						onChange={handleChangePassword}
 					/>
-					<div className="passwordAndRemember">
+					<div className='passwordAndRemember'>
 						<label>
 							<input
-								type="checkbox"
+								type='checkbox'
 								onChange={handleChangeRemember}
 								checked={remember}
 							/>
 							Lembrar-me
 						</label>
-						<Link to="/forgot-password">Esqueci minha senha</Link>
+						<Link to='/forgot-password'>Esqueci minha senha</Link>
 					</div>
-					<Button type="submit">Entrar</Button>
+					<Button type='submit'>Entrar</Button>
 				</form>
 				<footer>
 					<p>
 						Não tem conta? <br />
-						<Link to="/sing-up">Cadastre-se</Link>
+						<Link to='/sing-up'>Cadastre-se</Link>
 					</p>
 					<small>É de graça ❤</small>
 				</footer>
