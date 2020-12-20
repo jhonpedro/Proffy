@@ -18,7 +18,7 @@ function SingUp() {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const [isRegisterSuccess, setIsRegisterSuccess] = useState(false)
-	const { push } = useHistory()
+	const { goBack } = useHistory()
 
 	async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
 		event.preventDefault()
@@ -70,7 +70,7 @@ function SingUp() {
 	}
 
 	function handleGoBack() {
-		push('/')
+		goBack()
 	}
 
 	if (isRegisterSuccess) {
