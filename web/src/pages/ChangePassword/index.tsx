@@ -57,7 +57,7 @@ function ChangePassword() {
 	}
 
 	function handleGoHome() {
-		push('/')
+		push('/sing-in')
 	}
 
 	function handleChangePassword(event: React.ChangeEvent<HTMLInputElement>) {
