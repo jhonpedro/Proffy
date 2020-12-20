@@ -7,14 +7,15 @@ import 'react-toastify/dist/ReactToastify.min.css'
 // import './assets/styles/global.css'
 
 import Routes from './routes'
+import AppProvider from './hooks'
 
 function App() {
 	return (
-		<React.Fragment>
+		<AppProvider>
 			<GlobalStyle />
 			<Routes />
 			<ToastContainer />
-		</React.Fragment>
+		</AppProvider>
 	)
 }
 
