@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
-import { FaLaugh } from 'react-icons/fa'
+import { FaUserCircle } from 'react-icons/fa'
 
 import { User, useAuth } from '../../hooks/auth'
 import logoImg from '../../assets/images/logo.svg'
@@ -44,16 +44,20 @@ function Landing() {
 		// })
 	}, [totalConnections, user])
 
+	function goToUserPage() {
+		push('/user')
+	}
+
 	return (
 		<PageLanding>
 			<PageLandingContent className='container'>
 				{user ? (
 					<Header>
-						<div className='user'>
+						<div className='user' onClick={goToUserPage}>
 							{user.photo ? (
 								<img src={user.photo} alt={`Foto de ${user.name}`} />
 							) : (
-								<FaLaugh size='4rem' />
+								<FaUserCircle size='4rem' />
 							)}
 							<span>{user.name + ' ' + user.last_name}</span>
 						</div>
@@ -89,7 +93,7 @@ function Landing() {
 						<strong>O que deseja fazer?</strong>
 					</div>
 					<div className='connections'>
-						Total de {totalConnections} conexões já realizadas{' '}
+						Total de {totalConnections} conexões já realizadas
 						<img src={purpleHeart} alt='Coração roxo' />
 					</div>
 				</Span>

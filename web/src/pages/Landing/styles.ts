@@ -85,7 +85,7 @@ export const Header = styled.header`
 	}
 
 	.user {
-		width: 100%;
+		cursor: pointer;
 
 		display: flex;
 		align-items: center;
@@ -108,17 +108,14 @@ export const Header = styled.header`
 		margin: 0 auto;
 		width: 100%;
 		padding: 0 9rem;
-
-		.user {
-			width: 100%;
-		}
 	}
 `
 
 export const LogoContainer = styled.div`
-	text-align: center;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
 	margin-top: 2.5rem;
-	padding-left: 9rem;
 
 	img {
 		height: 6rem;
@@ -137,8 +134,9 @@ export const LogoContainer = styled.div`
 	}
 
 	@media (min-width: 1100px) {
+		padding-left: 10%;
 		grid-area: logo;
-		align-self: center;
+		align-items: flex-start;
 		text-align: left;
 		margin: 0;
 
@@ -267,6 +265,7 @@ export const Span = styled.span`
 	}
 
 	@media (min-width: 1100px) {
+		padding-left: 10%;
 		grid-area: total;
 		background-color: var(--color-background);
 		height: 100%;
@@ -277,12 +276,13 @@ export const Span = styled.span`
 			justify-self: end;
 			align-items: center;
 			margin: 0 5% 0 0;
+			min-width: 26rem;
 		}
 		.awelcome {
 			width: 60%;
 			height: 100%;
 			display: flex;
-			align-items: center;
+			align-items: flex-start;
 			justify-content: center;
 		}
 	}
