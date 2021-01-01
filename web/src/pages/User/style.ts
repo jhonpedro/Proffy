@@ -16,10 +16,15 @@ export const UserContainer = styled.div`
 
 export const UserIndividual = styled.div`
 	text-align: center;
-	margin: 0 auto;
-	max-width: 180px;
+	background-image: url(${backgroundUser});
+	background-position: center;
+	background-repeat: no-repeat;
+	background-blend-mode: color-burn;
+	width: 100%;
 
 	.photo {
+		margin: 0 auto;
+		max-width: 180px;
 		display: fkex;
 		align-items: center;
 		justify-content: center;
