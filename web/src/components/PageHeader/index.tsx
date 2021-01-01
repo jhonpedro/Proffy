@@ -9,8 +9,8 @@ import backIcon from '../../assets/images/icons/back.svg'
 import { PageHeaderElement, TopBar, HeaderContent } from './styles'
 
 interface PageHeaderProps {
-	title: string
 	middleTitleText: string
+	title?: string
 	description?: string
 	children?: React.ReactChild
 }
@@ -38,7 +38,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
 				<img src={logoImg} alt='Logo Proffy' />
 			</TopBar>
 			<HeaderContent>
-				<strong>{title}</strong>
+				{title ? <strong>{title}</strong> : null}
 				{description && <p>{description}</p>}
 				{Component}
 			</HeaderContent>
