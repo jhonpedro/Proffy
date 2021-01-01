@@ -52,26 +52,33 @@ const AuthProvider: React.FC = ({ children }) => {
 	})
 
 	async function singIn(email: string, password: string, remember: boolean) {
-		const response = await axios.post<SessionPostProps>('/user/session', {
-			email,
-			password,
-		})
+		try {
+			const response = await axios.post<SessionPostProps>('/user/session', {
+				email,
+				password,
+			})
 
-		const { token, user } = response.data
+			const { token, user } = response.data
 
-		axios.defaults.headers.Authorization = `Bearer ${token}`
+			axios.defaults.headers.Authorization = `Bearer ${token}`
 
-		setToken(token)
-		setUser(user)
-		if (remember) {
-			setRemeber(true)
-			localStorage.setItem('user', JSON.stringify(user))
-			localStorage.setItem('token', token)
+			setToken(token)
+			setUser(user)
+			if (remember) {
+				setRemeber(true)
+				localStorage.setItem('user', JSON.stringify(user))
+				localStorage.setItem('token', token)
+			}
+		} catch (error) {
+			return
 		}
 	}
 
 	function getUser() {
 		if (!remember) {
+			if (!user) {
+				return undefined
+			}
 			return user
 		}
 
@@ -107,4 +114,5 @@ function useAuth() {
 	return context
 }
 
-export { AuthProvider, useAuth }
+export { useAuth }
+export default AuthProvider
