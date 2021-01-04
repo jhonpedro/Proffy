@@ -1,6 +1,7 @@
 import React from 'react'
 import GlobalStyle from './assets/styles/global'
 import { ToastContainer } from 'react-toastify'
+import { BrowserRouter } from 'react-router-dom'
 
 import 'react-toastify/dist/ReactToastify.min.css'
 
@@ -11,11 +12,13 @@ import AppProvider from './hooks'
 
 function App() {
 	return (
-		<AppProvider>
-			<GlobalStyle />
-			<Routes />
-			<ToastContainer />
-		</AppProvider>
+		<BrowserRouter>
+			<AppProvider>
+				<GlobalStyle />
+				<Routes />
+				<ToastContainer />
+			</AppProvider>
+		</BrowserRouter>
 	)
 }
 
