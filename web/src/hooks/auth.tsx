@@ -13,6 +13,7 @@ interface AuthContextData {
 	token: string
 	singIn(email: string, password: string, remember: boolean): Promise<void>
 	getUser(): User | undefined
+	setUserPhoto(url: string): void
 }
 
 interface SessionPostProps {
@@ -91,11 +92,25 @@ const AuthProvider: React.FC = ({ children }) => {
 		return userParsed
 	}
 
+	function setUserPhoto(url: string) {
+		if (url) {
+			return
+		}
+
+		const userWithNewPhoto = user
+		userWithNewPhoto.photo = url
+
+		setUser(userWithNewPhoto)
+
+		localStorage.setItem('user', JSON.stringify(user))
+	}
+
 	return (
 		<AuthContext.Provider
 			value={{
 				singIn,
 				getUser,
+				setUserPhoto,
 				token,
 			}}
 		>
