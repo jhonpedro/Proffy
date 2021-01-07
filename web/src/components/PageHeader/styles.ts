@@ -5,8 +5,8 @@ export const PageHeaderElement = styled.header`
 	flex-direction: column;
 	background-color: var(--color-primary);
 
-	@media (min-width: 1100px) {
-		height: 340px;
+	@media (min-width: 700px) {
+		min-height: 340px;
 	}
 `
 
@@ -34,7 +34,7 @@ export const TopBar = styled.div`
 		height: 1.6rem;
 	}
 
-	@media (min-width: 1100px) {
+	@media (min-width: 700px) {
 		padding: 1.6rem 10%;
 	}
 `
@@ -59,9 +59,8 @@ export const HeaderContent = styled.div`
 		color: var(--color-title-in-primary);
 	}
 
-	@media (min-width: 1100px) {
+	@media (min-width: 700px) {
 		flex: 1;
-		max-width: 740px;
 		margin: 0 auto;
 		padding-bottom: 48px;
 		display: flex;

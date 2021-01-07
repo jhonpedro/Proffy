@@ -50,7 +50,7 @@ export default createGlobalStyle`
     color: var(--color-text-base);
   }
 
-  @media (min-width: 1100px) {
+  @media (min-width: 700px) {
     :root {
       font-size: 62.5%;
     }
