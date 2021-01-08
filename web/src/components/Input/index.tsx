@@ -10,8 +10,20 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 	type?: string
 }
 
-const Input: React.FC<InputProps> = ({ label, name, type, ...rest }) => {
-	const [labelAbove, setLabelAbove] = useState(false)
+const Input: React.FC<InputProps> = ({
+	label,
+	name,
+	type,
+	value,
+	className,
+	...rest
+}) => {
+	const [labelAbove, setLabelAbove] = useState(() => {
+		if (value) {
+			return true
+		}
+		return false
+	})
 
 	function handleFocus(event: FocusEvent<HTMLInputElement>) {
 		if (event.target.value === '') {
@@ -22,7 +34,7 @@ const Input: React.FC<InputProps> = ({ label, name, type, ...rest }) => {
 	}
 
 	return (
-		<InputBlock>
+		<InputBlock className={className}>
 			<Label isUp={labelAbove} htmlFor={`${name}`}>
 				{label}
 			</Label>
@@ -30,6 +42,7 @@ const Input: React.FC<InputProps> = ({ label, name, type, ...rest }) => {
 				onBlur={handleFocus}
 				type={type ? type : 'text'}
 				{...rest}
+				value={value}
 				id={name}
 			/>
 		</InputBlock>
