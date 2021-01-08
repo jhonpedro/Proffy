@@ -4,6 +4,7 @@ import axios from '../services/axios'
 export interface User {
 	id: number
 	name: string
+	email: string
 	last_name: string
 	photo: string
 	whatsappp: string
@@ -60,6 +61,7 @@ const AuthProvider: React.FC = ({ children }) => {
 			})
 
 			const { token, user } = response.data
+			user.email = email
 
 			axios.defaults.headers.Authorization = `Bearer ${token}`
 
