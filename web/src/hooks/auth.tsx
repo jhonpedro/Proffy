@@ -7,7 +7,7 @@ export interface User {
 	email: string
 	last_name: string
 	photo: string
-	whatsappp: string
+	whatsapp: string
 }
 
 interface AuthContextData {
