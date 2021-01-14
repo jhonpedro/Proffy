@@ -81,6 +81,10 @@ export default function User() {
 			return
 		}
 
+		if (!event.target.files[0]) {
+			return
+		}
+
 		const blob = URL.createObjectURL(event.target.files[0])
 
 		setNewUserPhoto({
