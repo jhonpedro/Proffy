@@ -41,7 +41,6 @@ export default function User() {
 			raw: '',
 		}
 	})
-	const [confirmUserPassword, setConfirmUserPassword] = useState('')
 	const [newUserPhoto, setNewUserPhoto] = useState<NewUserPhoto>(() => {
 		if (!user?.photo) {
 			return {
@@ -63,7 +62,6 @@ export default function User() {
 			name: newUserName,
 			last_name: newUserLastName,
 			whatsapp: newUserWhatsapp,
-			password: confirmUserPassword,
 			photo: newUserPhoto,
 		})
 	}
@@ -128,12 +126,6 @@ export default function User() {
 		}
 	}
 
-	function handleChangeConfirmUserPassword(
-		event: ChangeEvent<HTMLInputElement>
-	) {
-		setConfirmUserPassword(event.target.value)
-	}
-
 	return (
 		<PageUser>
 			<PageHeader middleTitleText='Meu perfil' title=''>
@@ -153,7 +145,7 @@ export default function User() {
 				</UserIndividual>
 			</PageHeader>
 			<UserContainer>
-				<form onSubmit={handleSubmit}>
+				<form onSubmit={handleSubmit} autoComplete='off'>
 					<Fieldset>
 						<Legend>Alterar dados</Legend>
 						<InputsGrid>
@@ -184,16 +176,10 @@ export default function User() {
 								name='whatsapp'
 								className='whatsappInput'
 								onChange={handleChangeNewUserWhatsapp}
+								autoComplete='off'
 							/>
-							<Input
-								label='Confirmar senha'
-								name='password'
-								className='passwordInput'
-								type='password'
-								value={confirmUserPassword}
-								onChange={handleChangeConfirmUserPassword}
-							/>
-							<Button type='submit'>Enviar</Button>
+							<Button type='submit'>Atualizar dados</Button>
+							<Button className='changePassword'>Trocar de senha</Button>
 						</InputsGrid>
 					</Fieldset>
 				</form>

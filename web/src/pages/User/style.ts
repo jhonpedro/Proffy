@@ -5,12 +5,16 @@ export const PageUser = styled.div`
 	width: 100%;
 	height: 100%;
 	background: var(--color-background);
-	position: fixed;
+	position: unset;
 
 	@media (min-width: 700px) {
+		position: fixed;
 		header {
 			padding-bottom: 8rem;
 		}
+	}
+	@media (min-height: 860px) {
+		position: unset;
 	}
 `
 
@@ -69,11 +73,10 @@ export const UserIndividual = styled.div`
 `
 
 export const UserContainer = styled.div`
-	height: 100%;
 	width: 100%;
 	margin-top: -1rem;
 	border-radius: 0.8rem;
-	padding: 5rem;
+	padding: 2rem 0.5rem;
 	background: url(${backgroundUser});
 	background-repeat: no-repeat;
 	background-position: center;
@@ -83,10 +86,6 @@ export const UserContainer = styled.div`
 
 	> form {
 		padding: 0 2.5rem;
-
-		button {
-			grid-area: submitButton;
-		}
 	}
 
 	@media (min-width: 700px) {
@@ -94,6 +93,7 @@ export const UserContainer = styled.div`
 		margin: 0 auto;
 		margin-top: -10rem;
 
+		padding: 5rem;
 		> form {
 			padding: 0 6.3rem;
 		}
@@ -103,16 +103,16 @@ export const UserContainer = styled.div`
 export const InputsGrid = styled.div`
 	height: 100%;
 	width: 100%;
-
 	display: grid;
-	grid-template-columns: repeat(6, 1fr);
-	grid-template-rows: repeat(4, 1fr);
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: repeat(6, 1fr);
 	grid-template-areas:
-		'nameInput nameInput nameInput last_nameInput  last_nameInput last_nameInput'
-		'emailInput emailInput emailInput emailInput  whatsappInput whatsappInput'
-		'passwordInput passwordInput passwordInput passwordInput passwordInput passwordInput'
-		'. . . . submitButton submitButton';
-	grid-column-gap: 2rem;
+		'nameInput nameInput'
+		'last_nameInput last_nameInput'
+		'emailInput emailInput'
+		'whatsappInput whatsappInput'
+		'submitButton submitButton'
+		'changePassword changePassword';
 	grid-row-gap: 2rem;
 
 	.nameInput {
@@ -135,7 +135,21 @@ export const InputsGrid = styled.div`
 	.whatsappInput input {
 		text-align: center;
 	}
-	.passwordInput {
-		grid-area: passwordInput;
+	[type='submit'] {
+		grid-area: submitButton;
+	}
+	.changePassword {
+		grid-area: changePassword;
+	}
+
+	@media (min-width: 700px) {
+		grid-template-columns: repeat(6, 1fr);
+		grid-template-rows: repeat(3, 1fr);
+		grid-template-areas:
+			'nameInput nameInput nameInput last_nameInput  last_nameInput last_nameInput'
+			'emailInput emailInput emailInput emailInput whatsappInput whatsappInput'
+			'changePassword changePassword changePassword submitButton submitButton submitButton';
+		grid-column-gap: 2rem;
+		grid-row-gap: 2rem;
 	}
 `
