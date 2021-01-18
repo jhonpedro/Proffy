@@ -12,7 +12,7 @@ import {
 	findUserByEmailRepository,
 	createUserRepository,
 	changeUserPasswordRepository,
-	findAndDeleteUserPhoto,
+	findUserPhoto,
 	changeUserPhoto,
 	updateUser,
 } from '../repositories/User'
@@ -123,7 +123,7 @@ export default {
 
 				fs.unlinkSync(req.file.path)
 
-				const { photo: userPhotoName } = await findAndDeleteUserPhoto(id)
+				const { photo: userPhotoName } = await findUserPhoto(id)
 
 				fs.unlink(
 					resolve(
@@ -137,7 +137,9 @@ export default {
 					async (err) => {
 						await changeUserPhoto(id, req.file.filename)
 
-						return res.sendStatus(200)
+						const { photo: newPhoto } = await findUserPhoto(id)
+
+						return res.status(200).json({ photo: newPhoto })
 					}
 				)
 			} catch (error) {
