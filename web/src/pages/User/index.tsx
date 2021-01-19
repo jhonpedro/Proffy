@@ -2,6 +2,7 @@ import React, { ChangeEvent, useState } from 'react'
 import PageHeader from '../../components/PageHeader'
 import { FaUserCircle } from 'react-icons/fa'
 import { useAuth } from '../../hooks/auth'
+import { toast } from 'react-toastify'
 
 import userCam from '../../assets/images/user-camera.svg'
 import { Fieldset } from '../../components/Fieldset/style'
@@ -10,6 +11,7 @@ import Input from '../../components/Input'
 
 import { InputsGrid, PageUser, UserContainer, UserIndividual } from './style'
 import Button from '../../components/Button'
+import axios from '../../services/axios'
 
 interface NewUserPhoto {
 	blob: string
@@ -17,7 +19,7 @@ interface NewUserPhoto {
 }
 
 export default function User() {
-	const { getUser, setUserPhoto } = useAuth()
+	const { getUser, setUser } = useAuth()
 	const user = getUser()
 
 	const [newUserName, setNewUserName] = useState(user?.name ? user.name : '')
@@ -55,15 +57,46 @@ export default function User() {
 		}
 	})
 
-	function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+	async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
 		event.preventDefault()
 
-		console.log({
-			name: newUserName,
-			last_name: newUserLastName,
-			whatsapp: newUserWhatsapp,
-			photo: newUserPhoto,
-		})
+		try {
+			await axios.put('/user', {
+				name: newUserName,
+				last_name: newUserLastName,
+				whatsapp: newUserWhatsapp.raw,
+			})
+
+			if (user) {
+				setUser({
+					...user,
+					name: newUserName,
+					last_name: newUserLastName,
+					whatsapp: newUserWhatsapp.raw,
+				})
+			}
+
+			if (newUserPhoto.file) {
+				try {
+					const userPhotoFormData = new FormData()
+					userPhotoFormData.append('photo', newUserPhoto.file)
+					const response = await axios.put('/user/photo', userPhotoFormData)
+
+					const photo = response.data.photo
+					if (user) {
+						setUser({
+							...user,
+							photo,
+						})
+					}
+				} catch {
+					toast.error('Aconteceu alguma coisa errada na mudança foto')
+					toast.error('Tente novamente')
+				}
+			}
+		} catch {
+			toast.error('Ocorreu um erro ao mudar os seus dados')
+		}
 	}
 
 	function handleChangeNewUserName(event: ChangeEvent<HTMLInputElement>) {
@@ -126,6 +159,18 @@ export default function User() {
 		}
 	}
 
+	async function handleRequestChangePassword() {
+		toast.info('Enviando E-Mail...')
+		try {
+			await axios.post('/forgot-password-email', { email: user?.email })
+
+			toast.success('E-mail enviado.')
+		} catch (error) {
+			console.log(error)
+			toast.error('Falha no envio do E-Mail!.')
+		}
+	}
+
 	return (
 		<PageUser>
 			<PageHeader middleTitleText='Meu perfil' title=''>
@@ -179,7 +224,12 @@ export default function User() {
 								autoComplete='off'
 							/>
 							<Button type='submit'>Atualizar dados</Button>
-							<Button className='changePassword'>Trocar de senha</Button>
+							<Button
+								className='changePassword'
+								onClick={handleRequestChangePassword}
+							>
+								Trocar de senha
+							</Button>
 						</InputsGrid>
 					</Fieldset>
 				</form>
