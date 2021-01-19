@@ -22,9 +22,5 @@ export default async function findUserByEmailRepository(
 		.where({ email })
 		.first()
 
-	if (user.photo) {
-		user.photo = `http://${process.env.SERVER_IP}:${process.env.SERVER_PORT}/photo/${user.photo}`
-	}
-
 	return user
 }
