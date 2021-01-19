@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useContext, useState, useEffect } from 'react'
 import axios from '../services/axios'
 
 export interface User {
@@ -14,7 +14,7 @@ interface AuthContextData {
 	token: string
 	singIn(email: string, password: string, remember: boolean): Promise<void>
 	getUser(): User | undefined
-	setUserPhoto(url: string): void
+	setUser(user: User): void
 }
 
 interface SessionPostProps {
@@ -35,6 +35,7 @@ const AuthProvider: React.FC = ({ children }) => {
 
 		return user
 	})
+
 	const [token, setToken] = useState<string>(() => {
 		const localResponse = localStorage.getItem('token') as string
 		if (!localResponse) {
@@ -71,6 +72,7 @@ const AuthProvider: React.FC = ({ children }) => {
 				setRemeber(true)
 				localStorage.setItem('user', JSON.stringify(user))
 				localStorage.setItem('token', token)
+				localStorage.setItem('remember', remember + '')
 			}
 		} catch (error) {
 			return
@@ -94,25 +96,18 @@ const AuthProvider: React.FC = ({ children }) => {
 		return userParsed
 	}
 
-	function setUserPhoto(url: string) {
-		if (url) {
-			return
+	useEffect(() => {
+		if (remember) {
+			localStorage.setItem('user', JSON.stringify(user))
 		}
-
-		const userWithNewPhoto = user
-		userWithNewPhoto.photo = url
-
-		setUser(userWithNewPhoto)
-
-		localStorage.setItem('user', JSON.stringify(user))
-	}
+	}, [user, remember])
 
 	return (
 		<AuthContext.Provider
 			value={{
 				singIn,
 				getUser,
-				setUserPhoto,
+				setUser,
 				token,
 			}}
 		>
