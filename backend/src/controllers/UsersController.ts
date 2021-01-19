@@ -137,9 +137,10 @@ export default {
 					async (err) => {
 						await changeUserPhoto(id, req.file.filename)
 
-						const { photo: newPhoto } = await findUserPhoto(id)
+						const { photo: newPhotoName } = await findUserPhoto(id)
 
-						return res.status(200).json({ photo: newPhoto })
+						const newPhotoPath = `http://${process.env.SERVER_IP}:${process.env.SERVER_PORT}/photo/${newPhotoName}`
+						return res.status(200).json({ photo: newPhotoPath })
 					}
 				)
 			} catch (error) {
@@ -255,6 +256,8 @@ export default {
 			} = await findUserByEmailRepository(email)
 
 			const user = { id, name, last_name, photo, whatsapp }
+
+			user.photo = `http://${process.env.SERVER_IP}:${process.env.SERVER_PORT}/photo/${photo}`
 
 			if (!id || !passwordInDataBase) {
 				throw new InvalidParamError('No user found')
