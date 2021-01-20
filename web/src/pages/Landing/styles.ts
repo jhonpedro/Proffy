@@ -1,5 +1,9 @@
 import styled, { css } from 'styled-components'
 
+interface MenuHamburguerProps {
+	active: boolean
+}
+
 export const PageLanding = styled.div`
 	width: 100vw;
 	height: 100vh;
@@ -16,7 +20,7 @@ export const PageLanding = styled.div`
 export const PageLandingContent = styled.div`
 	> img {
 		width: 60%;
-		@media (min-width: 1100px) {
+		@media (min-width: 700px) {
 			width: 100%;
 			padding-right: 9rem;
 		}
@@ -29,7 +33,7 @@ export const PageLandingContent = styled.div`
 	align-items: center;
 	position: relative;
 
-	@media (min-width: 1100px) {
+	@media (min-width: 700px) {
 		display: grid;
 		grid-template-rows: 10rem 1fr 1fr;
 		grid-template-columns: 2fr 1fr 1fr;
@@ -54,37 +58,11 @@ export const Header = styled.header`
 	grid-area: user;
 
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-start;
 	align-items: center;
 
-	.hamburger {
-		position: relative;
-		width: 2rem;
-		height: 2px;
-		border-radius: 1px;
-		background-color: white;
-
-		:after {
-			width: 2rem;
-			content: '';
-			height: 2px;
-			border-radius: 1px;
-			background-color: white;
-			position: absolute;
-			top: -5px;
-		}
-		:before {
-			width: 2rem;
-			content: '';
-			height: 2px;
-			border-radius: 1px;
-			background-color: white;
-			position: absolute;
-			bottom: -5px;
-		}
-	}
-
 	.user {
+		margin-right: 2rem;
 		cursor: pointer;
 
 		display: flex;
@@ -99,8 +77,29 @@ export const Header = styled.header`
 			width: 4rem;
 		}
 	}
+	.myClasses {
+		cursor: pointer;
+		display: none;
+		align-items: center;
+		justify-content: center;
+		img {
+			border-radius: 100%;
+			width: 4rem;
+		}
 
-	@media (min-width: 1100px) {
+		a {
+			text-decoration: none;
+			color: var(--color-text-in-primary);
+		}
+	}
+
+	.hamburguerMenuWrapper {
+		margin-left: auto;
+		padding: 1rem;
+		cursor: pointer;
+	}
+
+	@media (min-width: 700px) {
 		position: static;
 		margin-bottom: 0;
 		padding: 0;
@@ -108,6 +107,116 @@ export const Header = styled.header`
 		margin: 0 auto;
 		width: 100%;
 		padding: 0 9rem;
+
+		.myClasses {
+			display: flex;
+		}
+	}
+`
+
+export const HamburguerMenu = styled.div<MenuHamburguerProps>`
+	visibility: visible;
+	position: relative;
+	width: 2rem;
+	height: 2px;
+	border-radius: 1px;
+	background-color: white;
+
+	:after {
+		width: 2rem;
+		content: '';
+		height: 2px;
+		border-radius: 1px;
+		background-color: white;
+		position: absolute;
+		top: -5px;
+	}
+	:before {
+		width: 2rem;
+		content: '';
+		height: 2px;
+		border-radius: 1px;
+		background-color: white;
+		position: absolute;
+		bottom: -5px;
+	}
+
+	.lateralMenu {
+		${(props) => {
+			if (props.active) {
+				return css`
+					right: 0;
+				`
+			} else {
+				return css`
+					right: -400px;
+				`
+			}
+		}}
+
+		z-index: 5;
+		position: fixed;
+		height: 100vh;
+		width: 40vw;
+		top: 0;
+		background-color: var(--color-primary-darker);
+		padding: 2rem 1rem;
+		border-left: 5px solid var(--color-primary-dark);
+		transition: 300ms;
+
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		a {
+			display: flex;
+			align-items: center;
+			margin-top: 2rem;
+			padding-left: 1rem;
+			width: 100%;
+			height: 4rem;
+			text-decoration: none;
+			color: white;
+			transition: 300ms;
+
+			:hover {
+				border-radius: 2rem;
+				background-color: var(--color-primary-dark);
+				letter-spacing: 0.1rem;
+			}
+		}
+		.closeMenu {
+			width: 10rem;
+			height: 10px;
+			border-radius: 1px;
+			z-index: 6;
+
+			:after {
+				width: 2rem;
+				content: '';
+				height: 2px;
+				border-radius: 1px;
+				transform: rotate(-135deg);
+				background-color: white;
+				position: absolute;
+				top: 2rem;
+				right: 2rem;
+			}
+			:before {
+				width: 2rem;
+				content: '';
+				height: 2px;
+				transform: rotate(135deg);
+				border-radius: 1px;
+				background-color: white;
+				position: absolute;
+				top: 2rem;
+				right: 2rem;
+			}
+		}
+	}
+
+	@media (min-width: 700px) {
+		visibility: hidden;
 	}
 `
 
@@ -119,21 +228,18 @@ export const LogoContainer = styled.div`
 
 	img {
 		height: 6rem;
-		@media (min-width: 1100px) {
-			height: 10rem;
-		}
 	}
 
 	h2 {
 		font-weight: 500;
 		font-size: 1.5rem;
-		@media (min-width: 1100px) {
+		@media (min-width: 700px) {
 			line-height: 4.6rem;
 		}
 		margin-top: 0.5rem;
 	}
 
-	@media (min-width: 1100px) {
+	@media (min-width: 700px) {
 		padding-left: 10%;
 		grid-area: logo;
 		align-items: flex-start;
@@ -142,10 +248,11 @@ export const LogoContainer = styled.div`
 
 		h2 {
 			text-align: initial;
-			font-size: 3.6rem;
+			font-size: 150%;
 		}
 
 		img {
+			width: 70%;
 			height: 100%;
 		}
 	}
@@ -157,7 +264,7 @@ export const ButtonsContainer = styled.div`
 	justify-content: center;
 	margin: 3.2rem 0;
 
-	@media (min-width: 1100px) {
+	@media (min-width: 700px) {
 		height: 100%;
 		grid-area: buttons;
 		justify-content: start;
@@ -200,7 +307,7 @@ export const Button: any = styled.div`
 		}
 	}
 
-	@media (min-width: 1100px) {
+	@media (min-width: 700px) {
 		width: 45%;
 		max-width: 45%;
 
@@ -264,7 +371,7 @@ export const Span = styled.span`
 		}
 	}
 
-	@media (min-width: 1100px) {
+	@media (min-width: 700px) {
 		padding-left: 10%;
 		grid-area: total;
 		background-color: var(--color-background);

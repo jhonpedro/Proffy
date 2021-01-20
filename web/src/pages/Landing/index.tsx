@@ -15,6 +15,7 @@ import purpleHeart from '../../assets/images/icons/purple-heart.svg'
 import {
 	PageLanding,
 	Header,
+	HamburguerMenu,
 	PageLandingContent,
 	LogoContainer,
 	ButtonsContainer,
@@ -26,23 +27,23 @@ function Landing() {
 	const { push } = useHistory()
 	const { getUser } = useAuth()
 	const [totalConnections, setTotalConnections] = useState(0)
-	const [user] = useState<User>(() => {
-		const userLocalstorage = getUser()
-
-		if (!userLocalstorage) {
-			push('/sing-in')
-			return {} as User
-		}
-
-		return userLocalstorage
-	})
+	const [isLateralMenuActive, setIsLateralMenuActive] = useState(false)
+	const user = getUser()
 
 	useEffect(() => {
 		// axios.get('/connections').then((res: any) => {
 		// 	const { total } = res.data
 		// 	setTotalConnections(total)
 		// })
-	}, [totalConnections, user])
+
+		console.log(isLateralMenuActive)
+	}, [totalConnections, user, isLateralMenuActive])
+
+	function changeIsLateralMenuToFalse() {
+		setIsLateralMenuActive(false)
+	}
+
+	window.addEventListener('resize', changeIsLateralMenuToFalse)
 
 	function goToUserPage() {
 		push('/user')
@@ -61,7 +62,26 @@ function Landing() {
 							)}
 							<span>{user.name + ' ' + user.last_name}</span>
 						</div>
-						<div className='hamburger'></div>
+
+						<div className='myClasses'>
+							<img src={giveClasIcons} alt='Minhas aulas' />
+							<Link to='/myClasses'>Minhas aulas</Link>
+						</div>
+						<div
+							className='hamburguerMenuWrapper'
+							onClick={() => setIsLateralMenuActive(!isLateralMenuActive)}
+						>
+							<HamburguerMenu
+								className='hamburger'
+								active={isLateralMenuActive}
+							>
+								<div className='lateralMenu'>
+									<Link to='/myClasses'>Acessar minhas aulas</Link>
+									<Link to='/'>Sair</Link>
+									<span className='closeMenu'></span>
+								</div>
+							</HamburguerMenu>
+						</div>
 					</Header>
 				) : null}
 				<LogoContainer>
