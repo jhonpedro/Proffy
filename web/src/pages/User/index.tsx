@@ -60,6 +60,8 @@ export default function User() {
 	async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
 		event.preventDefault()
 
+		var flagWhatHaveChanged = 0
+
 		try {
 			if (
 				newUserName != user?.name &&
@@ -80,28 +82,36 @@ export default function User() {
 						whatsapp: newUserWhatsapp.raw,
 					})
 				}
-			}
 
-			if (newUserPhoto.file) {
-				try {
-					const userPhotoFormData = new FormData()
-					userPhotoFormData.append('photo', newUserPhoto.file)
-					const response = await axios.put('/user/photo', userPhotoFormData)
-
-					const photo = response.data.photo
-					if (user) {
-						setUser({
-							...user,
-							photo,
-						})
-					}
-				} catch {
-					toast.error('Aconteceu alguma coisa errada na mudança foto')
-					toast.error('Tente novamente')
-				}
+				flagWhatHaveChanged += 1
 			}
 		} catch {
 			toast.error('Ocorreu um erro ao mudar os seus dados')
+		}
+
+		if (newUserPhoto.file) {
+			try {
+				const userPhotoFormData = new FormData()
+				userPhotoFormData.append('photo', newUserPhoto.file)
+				const response = await axios.put('/user/photo', userPhotoFormData)
+
+				const photo = response.data.photo
+				if (user) {
+					setUser({
+						...user,
+						photo,
+					})
+				}
+				setNewUserPhoto({ ...newUserPhoto, file: '' })
+				flagWhatHaveChanged += 1
+			} catch {
+				toast.error('Aconteceu alguma coisa errada na mudança foto')
+			}
+		}
+		if (flagWhatHaveChanged != 0) {
+			toast.success('Seus dados foram alterados')
+		} else {
+			toast.info('Não houveram atualizações 🤔')
 		}
 	}
 
