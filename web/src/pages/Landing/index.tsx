@@ -35,9 +35,7 @@ function Landing() {
 		// 	const { total } = res.data
 		// 	setTotalConnections(total)
 		// })
-
-		console.log(isLateralMenuActive)
-	}, [totalConnections, user, isLateralMenuActive])
+	}, [totalConnections, user])
 
 	function changeIsLateralMenuToFalse() {
 		setIsLateralMenuActive(false)
@@ -65,7 +63,7 @@ function Landing() {
 
 						<div className='myClasses'>
 							<img src={giveClasIcons} alt='Minhas aulas' />
-							<Link to='/myClasses'>Minhas aulas</Link>
+							<Link to='/my-classes'>Minhas aulas</Link>
 						</div>
 						<div
 							className='hamburguerMenuWrapper'
@@ -76,7 +74,7 @@ function Landing() {
 								active={isLateralMenuActive}
 							>
 								<div className='lateralMenu'>
-									<Link to='/myClasses'>Acessar minhas aulas</Link>
+									<Link to='/my-classes'>Acessar minhas aulas</Link>
 									<Link to='/'>Sair</Link>
 									<span className='closeMenu'></span>
 								</div>
