@@ -9,7 +9,7 @@ import { Fieldset } from '../../components/Fieldset/style'
 import { Legend } from '../../components/Legend/style'
 import Input from '../../components/Input'
 
-import { InputsGrid, PageUser, UserContainer, UserIndividual } from './style'
+import { InputsGrid, PageUser, UserContainer, UserIndividual } from './styles'
 import Button from '../../components/Button'
 import axios from '../../services/axios'
 
