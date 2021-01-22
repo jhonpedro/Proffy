@@ -61,19 +61,25 @@ export default function User() {
 		event.preventDefault()
 
 		try {
-			await axios.put('/user', {
-				name: newUserName,
-				last_name: newUserLastName,
-				whatsapp: newUserWhatsapp.raw,
-			})
-
-			if (user) {
-				setUser({
-					...user,
+			if (
+				newUserName != user?.name &&
+				newUserLastName != user?.last_name &&
+				newUserWhatsapp.raw != user?.whatsapp
+			) {
+				await axios.put('/user', {
 					name: newUserName,
 					last_name: newUserLastName,
 					whatsapp: newUserWhatsapp.raw,
 				})
+
+				if (user) {
+					setUser({
+						...user,
+						name: newUserName,
+						last_name: newUserLastName,
+						whatsapp: newUserWhatsapp.raw,
+					})
+				}
 			}
 
 			if (newUserPhoto.file) {
