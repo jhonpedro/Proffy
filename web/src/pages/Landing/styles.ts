@@ -77,7 +77,7 @@ export const Header = styled.header`
 			width: 4rem;
 		}
 	}
-	.myClasses {
+	.my-classes {
 		cursor: pointer;
 		display: none;
 		align-items: center;
@@ -91,6 +91,13 @@ export const Header = styled.header`
 			text-decoration: none;
 			color: var(--color-text-in-primary);
 		}
+	}
+
+	.sing-out {
+		display: none;
+		padding: 1rem;
+		background-color: var(--color-primary-darker);
+		border-radius: 1rem;
 	}
 
 	.hamburguerMenuWrapper {
@@ -108,8 +115,18 @@ export const Header = styled.header`
 		width: 100%;
 		padding: 0 9rem;
 
-		.myClasses {
+		.my-classes {
 			display: flex;
+		}
+
+		.sing-out {
+			display: flex;
+			align-items: center;
+			margin-left: auto;
+		}
+
+		.hamburguerMenuWrapper {
+			display: none;
 		}
 	}
 `
@@ -167,7 +184,8 @@ export const HamburguerMenu = styled.div<MenuHamburguerProps>`
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
-		a {
+		a,
+		p {
 			display: flex;
 			align-items: center;
 			margin-top: 2rem;

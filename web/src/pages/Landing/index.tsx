@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 import { FaUserCircle } from 'react-icons/fa'
 
-import { User, useAuth } from '../../hooks/auth'
+import { useAuth } from '../../hooks/auth'
 import logoImg from '../../assets/images/logo.svg'
 import landingImg from '../../assets/images/landing.svg'
 import studyIcon from '../../assets/images/icons/study.svg'
 import giveClasIcons from '../../assets/images/icons/give-classes.svg'
 import purpleHeart from '../../assets/images/icons/purple-heart.svg'
+import singOutIcon from '../../assets/images/icons/sing-out.svg'
 
 // import './styles.css'
 
@@ -47,6 +48,11 @@ function Landing() {
 		push('/user')
 	}
 
+	function handleSingOut() {
+		localStorage.clear()
+		push('/sing-in')
+	}
+
 	return (
 		<PageLanding>
 			<PageLandingContent className='container'>
@@ -60,10 +66,19 @@ function Landing() {
 							)}
 							<span>{user.name + ' ' + user.last_name}</span>
 						</div>
-
-						<div className='myClasses'>
+						{/* I fell like this is the wrong way to do a menu
+								because i am wrinting a code to be in the menu twice
+								one for the menu larger than 700px and one for 
+								a thiner menu. Thats good for another commit
+								it's just see how bootstrap team do their responsive
+								menu and do the same here.
+						*/}
+						<div className='my-classes'>
 							<img src={giveClasIcons} alt='Minhas aulas' />
 							<Link to='/my-classes'>Minhas aulas</Link>
+						</div>
+						<div className='sing-out' onClick={handleSingOut}>
+							<img src={singOutIcon} alt='Sair' />
 						</div>
 						<div
 							className='hamburguerMenuWrapper'
@@ -75,7 +90,7 @@ function Landing() {
 							>
 								<div className='lateralMenu'>
 									<Link to='/my-classes'>Acessar minhas aulas</Link>
-									<Link to='/'>Sair</Link>
+									<p onClick={handleSingOut}>Sair</p>
 									<span className='closeMenu'></span>
 								</div>
 							</HamburguerMenu>
