@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components'
 
 export default createGlobalStyle`
   :root {
-    font-size: 60%;
+    font-size: 62.5%;
 
     --color-background: #F0F0F7;
     --color-primary-lighter: #9871F5;
@@ -46,7 +46,8 @@ export default createGlobalStyle`
   }
 
   body, input, button, textarea {
-    font: 500 1.6rem Poppins;
+    font-size: 1.6rem;
+    font-family: Poppins, sans-serif;
     color: var(--color-text-base);
   }
 
