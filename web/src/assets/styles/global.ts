@@ -37,6 +37,8 @@ export default createGlobalStyle`
 
   body {
     background: var(--color-background  );
+    font-size: 1.6rem;
+
   }
 
   #root {
@@ -46,14 +48,7 @@ export default createGlobalStyle`
   }
 
   body, input, button, textarea {
-    font-size: 1.6rem;
-    font-family: Poppins, sans-serif;
+    font-family: Poppins, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: var(--color-text-base);
-  }
-
-  @media (min-width: 700px) {
-    :root {
-      font-size: 62.5%;
-    }
   }
 `

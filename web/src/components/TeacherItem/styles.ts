@@ -37,7 +37,8 @@ export const Header = styled.header`
 		margin-left: 2.4rem;
 
 		strong {
-			font: 700 2.4rem Archivo;
+			font-weight: 700;
+			font-size: 2.4rem;
 			display: block;
 			color: var(--color-text-title);
 		}
@@ -84,7 +85,8 @@ export const Footer = styled.footer`
 		border: none;
 		border-radius: 0.8rem;
 		cursor: pointer;
-		font: 700 1.4rem Archivo;
+		font-weight: 700;
+		font-size: 1.4rem;
 		display: flex;
 		align-items: center;
 		justify-content: space-evenly;

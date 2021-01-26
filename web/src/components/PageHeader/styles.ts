@@ -6,7 +6,7 @@ export const PageHeaderElement = styled.header`
 	background-color: var(--color-primary);
 
 	@media (min-width: 700px) {
-		min-height: 340px;
+		min-height: 34rem;
 	}
 `
 
@@ -46,7 +46,6 @@ export const HeaderContent = styled.div`
 	margin: 3.2rem auto;
 
 	p {
-		max-width: 30rem;
 		font-size: 1.6rem;
 		line-height: 2.6rem;
 		color: var(--color-text-in-primary);
@@ -54,7 +53,8 @@ export const HeaderContent = styled.div`
 	}
 
 	strong {
-		font: 700 3.6rem Archivo;
+		font-weight: 700;
+		font-size: 3.6rem;
 		line-height: 4.2rem;
 		color: var(--color-title-in-primary);
 	}
@@ -67,9 +67,10 @@ export const HeaderContent = styled.div`
 		flex-direction: column;
 		justify-content: center;
 		align-items: flex-start;
-	}
 
-	strong {
-		max-width: 350px;
+		strong,
+		p {
+			max-width: 100%;
+		}
 	}
 `

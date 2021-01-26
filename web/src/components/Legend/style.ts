@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 
 export const Legend = styled.legend`
-	font: 700 2.5rem Archivo;
+	font-weight: 700;
+	font-size: 2.5rem;
 	color: var(--color-text-title);
 	margin-bottom: 2.4rem;
 	display: flex;
@@ -15,7 +16,7 @@ export const Legend = styled.legend`
 		background: none;
 		border: 0;
 		color: var(--color-primary);
-		font: 700 1.6rem Archivo;
+		font-weight: 700;
 		cursor: pointer;
 		transition: color 0.2s;
 	}

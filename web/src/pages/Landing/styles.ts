@@ -308,7 +308,8 @@ export const Button: any = styled.div`
 	a {
 		width: 100%;
 		height: 9.4rem;
-		font: 700 2rem Archivo;
+		font-weight: 700;
+		font-size: 2rem;
 
 		display: flex;
 		align-items: center;
