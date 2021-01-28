@@ -41,18 +41,30 @@ const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
 			start: 8,
 			end: 12,
 		},
+		{
+			week_day: 3,
+			start: 8,
+			end: 12,
+		},
+		{
+			week_day: 6,
+			start: 8,
+			end: 12,
+		},
 	]
-	const [scheduleDays, setSchedulesDays] = useState<Array<Schedule>>(() => {
-		const days = new Array()
+	const [scheduleDays] = useState<Array<Schedule>>(() => {
+		const days = new Array<Schedule>(7)
 
 		for (let i = 0; i < 7; i++) {
+			days[i] = {} as Schedule
+		}
+		for (let i = 0; i < 7; i++) {
 			if (scheduleTest[i]) {
-				if (scheduleTest[i].week_day == i) {
-					days.push(scheduleTest[i])
+				if (scheduleTest[i].week_day + '') {
+					days[scheduleTest[i].week_day] = scheduleTest[i]
 					continue
 				}
 			}
-			days.push([{}])
 		}
 
 		return days
