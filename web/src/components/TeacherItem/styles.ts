@@ -1,10 +1,13 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+
+interface ScheduleItemProps {
+	hasTime: boolean
+}
 
 export const TeacherItemContainer = styled.article`
 	background: var(--color-box-base);
 	border: 1px solid var(--color-line-in-white);
 	border-radius: 0.8rem;
-	margin-top: 2.4rem;
 	overflow: hidden;
 
 	> p {
@@ -14,8 +17,6 @@ export const TeacherItemContainer = styled.article`
 	}
 
 	@media (min-width: 700px) {
-		padding: 0 3.2rem;
-
 		> p {
 			padding: 0 3.2rem;
 		}
@@ -61,11 +62,52 @@ export const Paragraph = styled.p`
 	line-height: 2.8rem;
 `
 
+export const SchedulesContainer = styled.div`
+	padding: 0.5rem 2rem;
+
+	.schedule-strong-box {
+		display: flex;
+		justify-content: space-between;
+		font-size: 1.2rem;
+		padding: 0 2rem;
+
+		::before {
+			content: 'Dia';
+			display: inline-block;
+		}
+		::after {
+			content: 'Horário';
+			display: inline-block;
+		}
+	}
+`
+
+export const ScheduleItem = styled.div<ScheduleItemProps>`
+	display: flex;
+	justify-content: space-between;
+	font-size: 1.6rem;
+	padding: 1rem;
+	background-color: var(--color-box-footer);
+	border: 2px solid var(--color-line-in-white);
+	border-radius: 2rem;
+	margin-bottom: 1rem;
+
+	${(props) => {
+		if (!props.hasTime) {
+			return css`
+				filter: opacity(60%);
+			`
+		}
+
+		return
+	}}
+`
+
 export const Footer = styled.footer`
 	padding: 3.2rem;
 	background: var(--color-box-footer);
 	border-top: 1px solid var(--color-line-in-white);
-	margin-top: 3.2rem;
+	margin-top: 1.5rem;
 
 	display: flex;
 	align-items: center;
