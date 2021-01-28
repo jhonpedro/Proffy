@@ -63,7 +63,10 @@ export const Paragraph = styled.p`
 `
 
 export const SchedulesContainer = styled.div`
-	padding: 0.5rem 2rem;
+	padding: 1rem 2rem 0;
+	margin-top: 1rem;
+	border-top: 1px solid var(--color-line-in-white);
+	width: 100%;
 
 	.schedule-strong-box {
 		display: flex;
@@ -80,6 +83,16 @@ export const SchedulesContainer = styled.div`
 			display: inline-block;
 		}
 	}
+
+	@media (min-width: 700px) {
+		display: flex;
+		justify-content: space-evenly;
+		flex-wrap: wrap;
+
+		.schedule-strong-box {
+			display: none;
+		}
+	}
 `
 
 export const ScheduleItem = styled.div<ScheduleItemProps>`
@@ -92,10 +105,67 @@ export const ScheduleItem = styled.div<ScheduleItemProps>`
 	border-radius: 2rem;
 	margin-bottom: 1rem;
 
+	.week_day {
+		width: 7.5rem;
+	}
+
+	.time {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 6.5rem;
+		text-align: center;
+	}
+
+	> img {
+		display: initial;
+	}
+
+	@media (min-width: 700px) {
+		flex-direction: column;
+		font-size: 1.4rem;
+
+		.week_day {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			width: auto;
+
+			::before {
+				content: 'Dia';
+				font-size: 1rem;
+				display: inline-block;
+			}
+		}
+		.time {
+			flex-direction: column;
+			width: auto;
+
+			::before {
+				font-size: 1rem;
+
+				content: 'Horário';
+				display: inline-block;
+			}
+		}
+
+		> img {
+			display: none;
+		}
+	}
+
 	${(props) => {
 		if (!props.hasTime) {
 			return css`
 				filter: opacity(60%);
+				.time {
+					font-size: 1rem;
+
+					@media (min-width: 700px) {
+						font-size: 1.1rem;
+					}
+				}
 			`
 		}
 
