@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import api from '../../services/axios'
 
 import whatsappIcon from '../../assets/images/icons/whatsapp.svg'
+import scheduleArrow from '../../assets/images/icons/schedule-arrow.svg'
 
 // import './styles.css'
 
@@ -43,7 +44,7 @@ const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
 		},
 		{
 			week_day: 3,
-			start: 8,
+			start: 11,
 			end: 12,
 		},
 		{
@@ -73,15 +74,15 @@ const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
 	function getDayOfWeekBasedOnNumberGiven(number: number): string {
 		switch (number) {
 			case 0:
-				return 'Segunda-feira'
+				return 'Segunda'
 			case 1:
-				return 'Terça-feira'
+				return 'Terça'
 			case 2:
-				return 'Quarta-feira'
+				return 'Quarta'
 			case 3:
-				return 'Quinta-feira'
+				return 'Quinta'
 			case 4:
-				return 'Sexta-feira'
+				return 'Sexta'
 			case 5:
 				return 'Sábado'
 			case 6:
@@ -118,6 +119,7 @@ const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
 							<strong className='week_day'>
 								{getDayOfWeekBasedOnNumberGiven(index)}
 							</strong>
+							<img src={scheduleArrow} alt='Dia/Horário' />
 							<strong className='time'>
 								{day.start & day.end
 									? `${day.start ? day.start + 'h' : ''} - ${
