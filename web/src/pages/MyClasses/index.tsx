@@ -1,11 +1,24 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 
 import PageHeader from '../../components/PageHeader'
 import TeacherItem from '../../components/TeacherItem'
 
-import { PageMyClasses, ClassesContainer, ClassesContent } from './styles'
+import {
+	PageMyClasses,
+	ClassesContainer,
+	ClassesContent,
+	AddClassContainer,
+} from './styles'
 
 function MyClasses() {
+	const { push } = useHistory()
+
+	function redirectToCreateClass() {
+		push('/create-class')
+		return
+	}
+
 	return (
 		<PageMyClasses>
 			<PageHeader
@@ -29,6 +42,9 @@ function MyClasses() {
 					/>
 				</ClassesContent>
 			</ClassesContainer>
+			<AddClassContainer>
+				<strong onClick={redirectToCreateClass}>+ Adicionar uma aula</strong>
+			</AddClassContainer>
 		</PageMyClasses>
 	)
 }

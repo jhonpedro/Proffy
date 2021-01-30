@@ -24,3 +24,21 @@ export const ClassesContent = styled.main`
 		width: 60%;
 	}
 `
+
+export const AddClassContainer = styled.footer`
+	padding: 3rem 0;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+
+	strong {
+		cursor: pointer;
+		font-weight: 700;
+		color: var(--color-primary);
+		transition: 0.5s ease-in-out;
+
+		:hover {
+			letter-spacing: 0.2rem;
+		}
+	}
+`
