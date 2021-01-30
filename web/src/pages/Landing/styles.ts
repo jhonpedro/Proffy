@@ -94,6 +94,7 @@ export const Header = styled.header`
 	}
 
 	.sing-out {
+		cursor: pointer;
 		display: none;
 		padding: 1rem;
 		background-color: var(--color-primary-darker);
@@ -104,6 +105,11 @@ export const Header = styled.header`
 		margin-left: auto;
 		padding: 1rem;
 		cursor: pointer;
+	}
+
+	> div:hover {
+		transition: 0.3s ease-in-out;
+		filter: opacity(60%);
 	}
 
 	@media (min-width: 700px) {
