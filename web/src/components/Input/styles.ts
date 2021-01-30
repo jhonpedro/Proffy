@@ -28,11 +28,12 @@ export const InputBlock = styled.div`
 		top: 1rem;
 		bottom: 1rem;
 		border-radius: 1rem;
-		animation: ${expand} 0.5s ease-in-out;
+		animation: ${expand} 0.5s ease;
 	}
 
 	:focus-within label {
 		font-size: 1rem;
+		color: var(--color-primary-light);
 		top: 0.6rem;
 	}
 `
@@ -41,7 +42,7 @@ export const Label = styled.label<WrapperProps>`
 	position: absolute;
 	left: 1.6rem;
 
-	transition: 0.5s ease;
+	transition: 0.3s ease;
 	${(props) => {
 		if (props.isUp) {
 			return css`
