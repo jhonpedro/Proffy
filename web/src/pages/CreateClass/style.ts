@@ -63,7 +63,8 @@ export const Footer = styled.footer`
 		border: 0;
 		border-radius: 0.8rem;
 		cursor: pointer;
-		font: 700 1.6rem Archivo;
+		font-weight: 700;
+		font-size: 1.6rem;
 		display: flex;
 		align-items: center;
 		justify-content: center;
