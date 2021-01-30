@@ -24,7 +24,7 @@ function Routes() {
 			<Route isPrivate path='/user' children={<User />} />
 			<Route isPrivate path='/my-classes' children={<MyClasses />} />
 			<Route isPrivate path='/study' children={<TeacherList />} />
-			<Route isPrivate path='/give-classes' children={<TeacherForm />} />
+			<Route isPrivate path='/create-class' children={<TeacherForm />} />
 			<Route path='*'>
 				<Redirect to='/sing-in' />
 			</Route>
