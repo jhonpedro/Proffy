@@ -8,7 +8,6 @@ export const PageUser = styled.div`
 	position: unset;
 
 	@media (min-width: 700px) {
-		position: fixed;
 		header {
 			padding-bottom: 8rem;
 		}
