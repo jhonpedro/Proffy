@@ -4,6 +4,6 @@ export const Fieldset = styled.fieldset`
 	border: 0;
 
 	+ fieldset {
-		margin-top: 6.4rem;
+		margin-top: 2rem;
 	}
 `

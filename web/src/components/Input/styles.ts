@@ -34,7 +34,7 @@ export const InputBlock = styled.div`
 	:focus-within label {
 		font-size: 1rem;
 		color: var(--color-primary-light);
-		top: 0.6rem;
+		top: 0.5rem;
 	}
 `
 
@@ -46,7 +46,7 @@ export const Label = styled.label<WrapperProps>`
 	${(props) => {
 		if (props.isUp) {
 			return css`
-				top: 0.6rem;
+				top: 0.5rem;
 				font-size: 1rem;
 			`
 		} else {
@@ -64,5 +64,5 @@ export const InputElement = styled.input`
 	background: var(--color-input-background);
 	border: 1px solid var(--color-line-in-white);
 	outline: 0;
-	padding: 0 1.6rem;
+	padding: 0.1rem 1.6rem;
 `
