@@ -2,6 +2,9 @@ import styled from 'styled-components'
 
 export const SelectBlock = styled.div`
 	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 
 	+ .select-block {
 		margin-top: 1.4rem;
