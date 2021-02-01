@@ -1,6 +1,5 @@
 import { Request, Response } from 'express'
 
-import db from '../database/connection'
 import { convertHourToMinutes } from '../utils/helpers/'
 import { createClass, getBySubjectOrTime } from '../repositories/classes'
 
