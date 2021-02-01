@@ -35,10 +35,9 @@ export default createGlobalStyle`
     height: 100vh;
   }
 
-  body {
+  body, input, select, textarea {
     background: var(--color-background  );
-    font-size: 1.6rem;
-
+    font-size: 1.5rem;
   }
 
   #root {
