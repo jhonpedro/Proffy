@@ -114,7 +114,7 @@ function Landing() {
 						</Link>
 					</Button>
 					<Button give_classes>
-						<Link to='/give-classes'>
+						<Link to='/create-class'>
 							<img src={giveClasIcons} alt='Dar aulas' />
 							Dar aulas
 						</Link>

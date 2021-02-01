@@ -105,6 +105,10 @@ export const Header = styled.header`
 		margin-left: auto;
 		padding: 1rem;
 		cursor: pointer;
+
+		:hover {
+			filter: opacity(100%);
+		}
 	}
 
 	> div:hover {
