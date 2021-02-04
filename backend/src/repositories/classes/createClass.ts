@@ -6,11 +6,7 @@ interface PropsCreateClass {
 	biography: string
 	subject: string
 	cost: string
-	schedule: Array<{
-		week_day: number
-		start: string
-		end: string
-	}>
+	schedule: Array<ScheduleItem>
 }
 interface ScheduleItem {
 	week_day: number
