@@ -1,6 +1,6 @@
 import { UserClasses } from '../../repositories/classes/getUserClassesById'
 
-interface NewUserClass {
+export interface NewUserClass {
 	id: number
 	biography: string
 	subject: string
