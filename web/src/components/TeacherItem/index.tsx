@@ -27,6 +27,7 @@ export interface Teacher {
 
 interface TeacherItemProps {
 	teacher: Teacher
+	schedule: Schedule[]
 }
 
 interface Schedule {
@@ -35,24 +36,7 @@ interface Schedule {
 	end: number
 }
 
-const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
-	const scheduleTest = [
-		{
-			week_day: 0,
-			start: 8,
-			end: 12,
-		},
-		{
-			week_day: 3,
-			start: 11,
-			end: 12,
-		},
-		{
-			week_day: 6,
-			start: 8,
-			end: 12,
-		},
-	]
+const TeacherItem: React.FC<TeacherItemProps> = ({ teacher, schedule }) => {
 	const [scheduleDays] = useState<Array<Schedule>>(() => {
 		const days = new Array<Schedule>(7)
 
@@ -60,9 +44,9 @@ const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
 			days[i] = {} as Schedule
 		}
 		for (let i = 0; i < 7; i++) {
-			if (scheduleTest[i]) {
-				if (scheduleTest[i].week_day + '') {
-					days[scheduleTest[i].week_day] = scheduleTest[i]
+			if (schedule[i]) {
+				if (schedule[i].week_day + '') {
+					days[schedule[i].week_day] = schedule[i]
 					continue
 				}
 			}
@@ -139,7 +123,7 @@ const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
 				<a
 					target='_blank'
 					rel='noopener noreferrer'
-					href={`https://api.whatsapp.com/send?phone=${teacher.whatsapp}`}
+					href={`https://api.whatsapp.com/send?phone=${teacher.whatsapp}&text=Ol%C3%A1%20Professor%2C%20estou%20interessado%20em%20estudar%20com%20voc%C3%AA!`}
 					onClick={createNewConnection}
 				>
 					<img src={whatsappIcon} alt='WhatsApp' />
