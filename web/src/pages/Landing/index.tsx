@@ -64,7 +64,7 @@ function Landing() {
 							) : (
 								<FaUserCircle size='4rem' />
 							)}
-							<span>{user.name + ' ' + user.last_name}</span>
+							<span>Meu perfil</span>
 						</div>
 						{/* I fell like this is the wrong way to do a menu
 								because i am wrinting a code to be in the menu twice
