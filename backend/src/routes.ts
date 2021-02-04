@@ -16,6 +16,7 @@ routes.put('/user/photo', loginRequired, userController.updatePhoto)
 routes.post('/forgot-password-email', userController.forgotPasswordEmail)
 routes.put('/forgot-password-change', userController.forgotPasswordChange)
 
+routes.get('/user-classes', loginRequired, classesControler.show)
 routes.get('/classes', classesControler.index)
 routes.post('/classes', loginRequired, classesControler.create)
 

@@ -1,7 +1,11 @@
 import { Request, Response } from 'express'
 
 import { convertHourToMinutes } from '../utils/helpers/'
-import { createClass, getBySubjectOrTime } from '../repositories/classes'
+import {
+	createClass,
+	getBySubjectOrTime,
+	getUserClassesById,
+} from '../repositories/classes'
 
 export default {
 	async index(req: Request, res: Response) {
@@ -24,6 +28,14 @@ export default {
 		} catch (error) {
 			return res.status(500).json({ message: error.message })
 		}
+	},
+
+	async show(req: Request, res: Response) {
+		const userId = req.user.id
+
+		const userClasses = await getUserClassesById(Number(userId))
+
+		return res.status(200).json(userClasses)
 	},
 
 	async create(req: Request, res: Response) {
