@@ -62,11 +62,13 @@ export default function User() {
 
 		var flagWhatHaveChanged = 0
 
+		console.log()
+
 		try {
 			if (
-				newUserName != user?.name &&
-				newUserLastName != user?.last_name &&
-				newUserWhatsapp.raw != user?.whatsapp
+				newUserName !== user?.name ||
+				newUserLastName !== user?.last_name ||
+				newUserWhatsapp.raw !== user?.whatsapp
 			) {
 				await axios.put('/user', {
 					name: newUserName,
