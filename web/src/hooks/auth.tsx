@@ -13,7 +13,7 @@ export interface User {
 interface AuthContextData {
 	token: string
 	singIn(email: string, password: string, remember: boolean): Promise<void>
-	getUser(): User | undefined
+	getUser(): User
 	setUser(user: User): void
 }
 
@@ -79,17 +79,17 @@ const AuthProvider: React.FC = ({ children }) => {
 		}
 	}
 
-	function getUser() {
+	function getUser(): User {
 		if (!remember) {
 			if (!user) {
-				return undefined
+				return {} as User
 			}
 			return user
 		}
 
 		const localResponse = localStorage.getItem('user') as string
 		if (!localStorage) {
-			return undefined
+			return {} as User
 		}
 		const userParsed = JSON.parse(localResponse)
 
