@@ -15,7 +15,9 @@ const RouteWrapper: React.FC<RouteWrapper> = ({
 	const { getUser } = useAuth()
 	const user = getUser()
 
-	if (!user && isPrivate) {
+	// I could add all of properties here, but if think there is no need
+	// because if i dont have onde of these three i probably wont have the other ones
+	if ((!user || !user.name || !user.last_name || !user.email) && isPrivate) {
 		return <Redirect to='/sing-in' />
 	}
 
