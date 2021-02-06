@@ -290,7 +290,6 @@ export const ButtonsContainer = styled.div`
 	width: 100%;
 	display: flex;
 	justify-content: center;
-	margin: 3.2rem 0;
 
 	@media (min-width: 700px) {
 		height: 100%;
