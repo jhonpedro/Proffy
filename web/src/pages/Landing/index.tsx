@@ -53,6 +53,10 @@ function Landing() {
 		push('/sing-in')
 	}
 
+	function redirectToMyClasses() {
+		push('/my-classes')
+	}
+
 	return (
 		<PageLanding>
 			<PageLandingContent className='container'>
@@ -73,9 +77,9 @@ function Landing() {
 								it's just see how bootstrap team do their responsive
 								menu and do the same here.
 						*/}
-						<div className='my-classes'>
+						<div className='my-classes' onClick={redirectToMyClasses}>
 							<img src={giveClasIcons} alt='Minhas aulas' />
-							<Link to='/my-classes'>Minhas aulas</Link>
+							<span>Minhas aulas</span>
 						</div>
 						<div className='sing-out' onClick={handleSingOut}>
 							<img src={singOutIcon} alt='Sair' />
