@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { TeacherItemContainer } from '../../components/TeacherItem/styles'
 
 export const PageMyClasses = styled.div`
 	height: 100vh;
@@ -8,6 +9,10 @@ export const PageMyClasses = styled.div`
 export const ClassesContainer = styled.div`
 	margin: 0 auto;
 	width: 100%;
+
+	${TeacherItemContainer} + ${TeacherItemContainer} {
+		margin-top: 2rem;
+	}
 `
 
 export const ClassesContent = styled.main`

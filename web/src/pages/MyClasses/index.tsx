@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import api from '../../services/axios'
+import { NewUserClass } from '../../../../backend/src/utils/helpers/formatUserClasses'
 
 import PageHeader from '../../components/PageHeader'
 import TeacherItem from '../../components/TeacherItem'
+import { useAuth } from '../../hooks/auth'
 
 import {
 	PageMyClasses,
@@ -11,8 +14,35 @@ import {
 	AddClassContainer,
 } from './styles'
 
+interface UserClass extends Array<NewUserClass> {}
+
 function MyClasses() {
 	const { push } = useHistory()
+	const { getUser } = useAuth()
+	const user = getUser()
+	const [userClasses, setUserClasses] = useState<UserClass>(() => {
+		return [
+			{
+				id: 0,
+				subject: '',
+				biography: '',
+				cost: '',
+				schedule: [
+					{
+						week_day: 0,
+						start: 0,
+						end: 0,
+					},
+				],
+			},
+		]
+	})
+
+	useEffect(() => {
+		api.get('/user-classes').then((response) => {
+			setUserClasses(response.data)
+		})
+	}, [])
 
 	function redirectToCreateClass() {
 		push('/create-class')
@@ -27,20 +57,27 @@ function MyClasses() {
 				description='Adicione remova e edite suas aulas em um só lugar'
 			/>
 			<ClassesContainer>
-				<ClassesContent>
-					<TeacherItem
-						teacher={{
-							id: 1,
-							avatar:
-								'http://192.168.1.207:3030/photo/download_1611359399921_198.jpg',
-							name: 'João',
-							whatsapp: '1231212',
-							bio: 'Test',
-							subject: 'Geografia',
-							cost: 12,
-						}}
-					/>
-				</ClassesContent>
+				{userClasses.length > 0 ? (
+					<ClassesContent>
+						{userClasses.map((userClass) => {
+							return (
+								<TeacherItem
+									key={userClass.id}
+									teacher={{
+										id: user.id,
+										avatar: user.photo,
+										name: user.name,
+										whatsapp: user.whatsapp,
+										bio: userClass.biography,
+										subject: userClass.subject,
+										cost: Number(userClass.cost),
+									}}
+									schedule={userClass.schedule}
+								/>
+							)
+						})}
+					</ClassesContent>
+				) : null}
 			</ClassesContainer>
 			<AddClassContainer>
 				<strong onClick={redirectToCreateClass}>+ Adicionar uma aula</strong>
