@@ -1,6 +1,13 @@
-import React, { useState, FormEvent } from 'react'
+import React, {
+	useState,
+	FormEvent,
+	InputHTMLAttributes,
+	useEffect,
+} from 'react'
 import { useHistory } from 'react-router-dom'
 import api from '../../services/axios'
+import { toast } from 'react-toastify'
+import * as Yup from 'yup'
 
 import PageHeader from '../../components/PageHeader'
 import Input from '../../components/Input'
@@ -11,50 +18,110 @@ import Select from '../../components/Select'
 import { Fieldset } from '../../components/Fieldset/style'
 import { Legend } from '../../components/Legend/style'
 
-import { PageTeacherForm, MainPageTeacherForm, Footer } from './style'
+import {
+	PageTeacherForm,
+	MainPageTeacherForm,
+	ScheduleItem,
+	Footer,
+} from './style'
+import { useAuth } from '../../hooks/auth'
+import SimpleInput from '../../components/SimpleInput'
+import Button from '../../components/Button'
 
 // import './styles.css'
 
+interface ScheduleItem {
+	week_day: number
+	start: string
+	end: string
+}
+
 function TeacherForm() {
-	const [name, setName] = useState('')
-	const [avatar, setAvatar] = useState('')
-	const [whatsapp, setWhatsapp] = useState('')
-	const [bio, setBio] = useState('')
+	const { getUser } = useAuth()
+	const user = getUser()
+
+	const [biography, setBiography] = useState('')
 
 	const [subject, setSubject] = useState('')
 	const [cost, setCost] = useState('')
 
-	const [scheduleItems, setScheduleItems] = useState([
-		{ week_day: 0, from: '', to: '' },
+	const [scheduleItems, setScheduleItems] = useState<Array<ScheduleItem>>([
+		{ week_day: 0, start: '', end: '' },
 	])
 
-	const history = useHistory()
+	const { push } = useHistory()
 
-	function handleSubmit(event: FormEvent) {
+	useEffect(() => {
+		window.scrollTo({
+			top: 0,
+			left: 0,
+			behavior: 'smooth',
+		})
+	}, [])
+
+	async function handleSubmit(event: FormEvent) {
 		event.preventDefault()
 
-		if (
-			!name ||
-			!whatsapp ||
-			!bio ||
-			!subject ||
-			!cost ||
-			!scheduleItems.map((item) => (item.from ? item : null))
-		) {
-			return
-		}
-
-		api.post('/classes', {
-			name,
-			avatar,
-			whatsapp,
-			bio,
+		const classesDataForm = {
+			biography,
 			subject,
 			cost: Number(cost),
 			schedule: scheduleItems,
+		}
+
+		const schema = Yup.object().shape({
+			biography: Yup.string().trim().required('A biografia é obrigatória'),
+			subject: Yup.string().required('A matéria é obrigatória'),
+			cost: Yup.number()
+				.moreThan(-1, 'O custo tem que ser maior ou igual a 0')
+				.required('O custo deve ser de pelo menos 0'),
+			schedule: Yup.array().of(
+				Yup.object().shape({
+					week_day: Yup.number().moreThan(-1).required(),
+					start: Yup.string()
+						.min(3, 'É necessário escolher uma hora no início de um horário')
+						.required('O horário do inicio de aula é obrigatório'),
+					end: Yup.string()
+						.min(3, 'É necessário escolher uma hora de final para um horário')
+						.required('O horário do final de aula é obrigatório'),
+				})
+			),
 		})
 
-		history.push('/')
+		try {
+			schema.validateSync(classesDataForm, { abortEarly: false })
+		} catch (err) {
+			err.errors.map((errName: string) => {
+				toast.error(errName)
+			})
+			return
+		}
+
+		try {
+			await api.post('/classes', classesDataForm)
+
+			toast.success(
+				'Cadastro feito com sucesso! Redirecionando você para as suas aulas'
+			)
+			push('/my-classes')
+			if (document.getElementById('root')) {
+				const height = document.getElementById('root')?.scrollHeight || 0
+				window.scrollTo({
+					top: height,
+					left: 0,
+					behavior: 'smooth',
+				})
+			}
+		} catch (error) {
+			if (error.response.status === 401) {
+				toast.info(
+					'É necessário efetuar o Login novamente. Você será redirecionada em segundos'
+				)
+				setTimeout(() => {
+					push('/sing-in', { lastPage: '/create-class' })
+				}, 4000)
+			}
+		}
 	}
 
 	function addNewScheduleItem() {
@@ -62,13 +129,13 @@ function TeacherForm() {
 			...scheduleItems,
 			{
 				week_day: 0,
-				from: '',
-				to: '',
+				start: '',
+				end: '',
 			},
 		])
 	}
 
-	function setScheduleItemValue(
+	function handleChangeScheduleItems(
 		position: number,
 		field: string,
 		value: string
@@ -82,49 +149,60 @@ function TeacherForm() {
 			}
 			return scheduleItem
 		})
-		console.log(newScheduleItems)
 		setScheduleItems(newScheduleItems)
 	}
 
+	function handleChangeCost(event: React.ChangeEvent<HTMLInputElement>) {
+		let cleanCost = event.target.value.replace(/[A-Z]/gi, '')
+		cleanCost = cleanCost.replace(',', '.')
+
+		if (
+			cleanCost[cleanCost.length - 1] == '.' &&
+			cleanCost[cleanCost.length - 2] == '.'
+		) {
+			return
+		}
+
+		setCost(cleanCost)
+	}
+
+	function adviseAboutInput() {
+		toast.info('Para alterar esse campo é necessário ir ao seu perfil')
+	}
+
 	return (
-		<PageTeacherForm className='container'>
+		<PageTeacherForm>
 			<PageHeader
-				middleTitleText='Dar Aulas'
-				title='Que incrivel que você quer dar aulas.'
-				description='O primeiro passo é preencher esse formulário de inscrição'
+				middleTitleText='Criar aulas'
+				title='Vamos criar uma aula.'
+				description='Preencha esse formulário'
 			/>
 			<MainPageTeacherForm>
 				<form onSubmit={handleSubmit}>
-					<Fieldset>
+					<Fieldset onClick={adviseAboutInput}>
 						<Legend>Seus dados</Legend>
 						<Input
 							name='name'
 							label='Nome completo'
-							value={name}
-							onChange={(event) => setName(event.target.value)}
-						/>
-						<Input
-							name='avatar'
-							label='Avatar'
-							value={avatar}
-							onChange={(event) => setAvatar(event.target.value)}
+							disabled
+							value={user?.name}
 						/>
 						<Input
 							name='whatsapp'
 							label='Whatsapp'
-							value={whatsapp}
-							onChange={(event) => setWhatsapp(event.target.value)}
-						/>
-						<Textarea
-							name='bio'
-							label='Biografia'
-							value={bio}
-							onChange={(event) => setBio(event.target.value)}
+							disabled
+							value={user?.whatsapp}
 						/>
 					</Fieldset>
 
 					<Fieldset>
 						<Legend>Sobre as aulas</Legend>
+						<Textarea
+							name='bio'
+							label='Biografia'
+							value={biography}
+							onChange={(event) => setBiography(event.target.value)}
+						/>
 						<Select
 							name='subject'
 							label='Matéria'
@@ -150,26 +228,26 @@ function TeacherForm() {
 							name='cost'
 							label='Custo da sua hora por aula'
 							value={cost}
-							onChange={(event) => setCost(event.target.value)}
+							onChange={handleChangeCost}
 						/>
 					</Fieldset>
 
 					<Fieldset>
 						<Legend>
-							Horários que você pode dar aula
+							Horários das aulas
 							<button onClick={addNewScheduleItem} type='button'>
 								+ Novo horário
 							</button>
 						</Legend>
-						{scheduleItems.map((scheduleItem, index) => {
+						{scheduleItems?.map((scheduleItem, index) => {
 							return (
-								<div key={index} className='schedule-item'>
+								<ScheduleItem key={index}>
 									<Select
 										name='week_day'
 										label='Dia da semana'
-										value={scheduleItems[index].week_day}
+										value={scheduleItem.week_day}
 										onChange={(event) =>
-											setScheduleItemValue(
+											handleChangeScheduleItems(
 												index,
 												'week_day',
 												event.target.value
@@ -185,38 +263,45 @@ function TeacherForm() {
 											{ value: '6', label: 'Sábado' },
 										]}
 									/>
-									<Input
+									<SimpleInput
 										name='from'
 										label='Das'
 										type='time'
-										value={scheduleItems[index].from}
+										value={scheduleItem.start}
 										onChange={(event) =>
-											setScheduleItemValue(index, 'from', event.target.value)
+											handleChangeScheduleItems(
+												index,
+												'start',
+												event.target.value
+											)
 										}
 									/>
-									<Input
+									<SimpleInput
 										name='to'
 										label='Até'
 										type='time'
-										value={scheduleItems[index].to}
+										value={scheduleItem.end}
 										onChange={(event) =>
-											setScheduleItemValue(index, 'to', event.target.value)
+											handleChangeScheduleItems(
+												index,
+												'end',
+												event.target.value
+											)
 										}
 									/>
-								</div>
+								</ScheduleItem>
 							)
 						})}
 					</Fieldset>
-
-					<Footer>
-						<p>
-							<img src={warningIcon} alt='Aviso Importante' />
-							Importante! <br />
-							Preencha todos os dados
-						</p>
-						<button type='submit'>Salvar cadastro</button>
-					</Footer>
+					<Button type='submit'>Salvar cadastro</Button>
 				</form>
+				<Footer>
+					<p>
+						<img src={warningIcon} alt='Aviso Importante' />
+						Importante! <br />
+						Preencha todos os dados
+					</p>
+				</Footer>
 			</MainPageTeacherForm>
 		</PageTeacherForm>
 	)

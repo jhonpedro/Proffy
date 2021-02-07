@@ -1,35 +1,50 @@
 import styled from 'styled-components'
 
+import { InputBlock } from '../../components/Input/styles'
+import { TextAreaContainer } from '../../components/TextArea/styles'
+import { SelectBlock } from '../../components/Select/styles'
+import { ButtonComponent } from '../../components/Button/styles'
+
 export const PageTeacherForm = styled.div`
+	height: 100%;
 	width: 100vw;
-	height: 100vh;
 
 	@media (min-width: 700px) {
-		max-width: 100vw;
+		padding-bottom: 200px;
 	}
 `
 
 export const MainPageTeacherForm = styled.main`
-	background: var(--color-box-base);
 	width: 100%;
+	background: var(--color-box-base);
 	border-radius: 0.8rem;
-	margin: -1.2rem auto;
-	margin-bottom: 5rem;
-	padding-top: 6.4rem;
-	overflow: hidden;
+	margin: -1.2rem auto 100px;
 
-	label {
-		color: var(--color-text-complement);
+	form {
+		padding: 2rem;
+
+		${ButtonComponent} {
+			font-size: 1.6rem;
+			margin-top: 2rem;
+			width: 100%;
+		}
+	}
+
+	${InputBlock}, ${TextAreaContainer}, ${SelectBlock} {
+		margin: 1rem 0;
 	}
 
 	@media (min-width: 700px) {
-		max-width: 74rem;
+		width: 60%;
 		margin: -5.5rem auto;
 	}
 `
 
 export const ScheduleItem = styled.div`
-	@media (min-width: 1100) {
+	border-bottom: 1px solid var(--color-line-in-white);
+	padding-bottom: 1rem;
+
+	@media (min-width: 700px) {
 		display: grid;
 		grid-template-columns: 2fr 1fr 1fr;
 		column-gap: 1.6rem;
@@ -40,7 +55,7 @@ export const Footer = styled.footer`
 	padding: 4rem 2.4rem;
 	background: var(--color-box-footer);
 	border-top: 1px solid var(--color-line-in-white);
-	margin-top: 6.4rem;
+	width: 100%;
 
 	p {
 		display: flex;
