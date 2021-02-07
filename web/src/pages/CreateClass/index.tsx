@@ -1,9 +1,4 @@
-import React, {
-	useState,
-	FormEvent,
-	InputHTMLAttributes,
-	useEffect,
-} from 'react'
+import React, { useState, FormEvent, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import api from '../../services/axios'
 import { toast } from 'react-toastify'
@@ -91,7 +86,7 @@ function TeacherForm() {
 		try {
 			schema.validateSync(classesDataForm, { abortEarly: false })
 		} catch (err) {
-			err.errors.map((errName: string) => {
+			err.errors.forEach((errName: string) => {
 				toast.error(errName)
 			})
 			return
