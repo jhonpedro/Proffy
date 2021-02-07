@@ -58,19 +58,19 @@ const TeacherItem: React.FC<TeacherItemProps> = ({ teacher, schedule }) => {
 	function getDayOfWeekBasedOnNumberGiven(number: number): string {
 		switch (number) {
 			case 0:
-				return 'Segunda'
-			case 1:
-				return 'Terça'
-			case 2:
-				return 'Quarta'
-			case 3:
-				return 'Quinta'
-			case 4:
-				return 'Sexta'
-			case 5:
-				return 'Sábado'
-			case 6:
 				return 'Domingo'
+			case 1:
+				return 'Segunda'
+			case 2:
+				return 'Terça'
+			case 3:
+				return 'Quarta'
+			case 4:
+				return 'Quinta'
+			case 5:
+				return 'Sexta'
+			case 6:
+				return 'Sábado'
 			default:
 				return 'Dia inexistente'
 		}
@@ -98,14 +98,14 @@ const TeacherItem: React.FC<TeacherItemProps> = ({ teacher, schedule }) => {
 					return (
 						<ScheduleItem
 							key={index}
-							hasTime={day.start & day.end ? true : false}
+							hasTime={day.start && day.end ? true : false}
 						>
 							<strong className='week_day'>
 								{getDayOfWeekBasedOnNumberGiven(index)}
 							</strong>
 							<img src={scheduleArrow} alt='Dia/Horário' />
 							<strong className='time'>
-								{day.start & day.end
+								{day.start && day.end
 									? `${day.start ? day.start + 'h' : ''} - ${
 											day.end ? day.end + 'h' : ''
 									  }`
@@ -123,7 +123,7 @@ const TeacherItem: React.FC<TeacherItemProps> = ({ teacher, schedule }) => {
 				<a
 					target='_blank'
 					rel='noopener noreferrer'
-					href={`https://api.whatsapp.com/send?phone=${teacher.whatsapp}&text=Ol%C3%A1%20Professor%2C%20estou%20interessado%20em%20estudar%20com%20voc%C3%AA!`}
+					href={`https://api.whatsapp.com/send?phone=55${teacher.whatsapp}&text=Ol%C3%A1%20Professor%2C%20estou%20interessado%20em%20estudar%20com%20voc%C3%AA!`}
 					onClick={createNewConnection}
 				>
 					<img src={whatsappIcon} alt='WhatsApp' />
