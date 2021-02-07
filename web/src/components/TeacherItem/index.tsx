@@ -32,8 +32,8 @@ interface TeacherItemProps {
 
 interface Schedule {
 	week_day: number
-	start: number
-	end: number
+	start: string
+	end: string
 }
 
 const TeacherItem: React.FC<TeacherItemProps> = ({ teacher, schedule }) => {

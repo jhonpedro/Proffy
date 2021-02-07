@@ -30,8 +30,8 @@ function MyClasses() {
 				schedule: [
 					{
 						week_day: 0,
-						start: 0,
-						end: 0,
+						start: '',
+						end: '',
 					},
 				],
 			},
