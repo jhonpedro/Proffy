@@ -16,6 +16,7 @@ export default function loginRequired(
 
 	if (!raw_token) {
 		res.sendStatus(401)
+		return
 	}
 
 	try {
@@ -32,5 +33,6 @@ export default function loginRequired(
 		return next()
 	} catch (error) {
 		res.status(401).json({ message: 'Token error' })
+		return
 	}
 }
