@@ -115,7 +115,7 @@ export default function User() {
 				toast.error('Aconteceu alguma coisa errada na mudança foto')
 			}
 		}
-		if (flagWhatHaveChanged != 0) {
+		if (flagWhatHaveChanged !== 0) {
 			toast.success('Seus dados foram alterados')
 		} else {
 			toast.info('Não houveram atualizações 🤔')
