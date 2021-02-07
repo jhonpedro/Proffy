@@ -55,6 +55,8 @@ const AuthProvider: React.FC = ({ children }) => {
 	})
 
 	async function singIn(email: string, password: string, remember: boolean) {
+		localStorage.clear()
+		setRemeber(false)
 		try {
 			const response = await axios.post<SessionPostProps>('/user/session', {
 				email,
