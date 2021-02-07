@@ -3,6 +3,7 @@ import PageHeader from '../../components/PageHeader'
 import { FaUserCircle } from 'react-icons/fa'
 import { useAuth } from '../../hooks/auth'
 import { toast } from 'react-toastify'
+import { useHistory } from 'react-router-dom'
 
 import userCam from '../../assets/images/user-camera.svg'
 import { Fieldset } from '../../components/Fieldset/style'
@@ -21,6 +22,7 @@ interface NewUserPhoto {
 export default function User() {
 	const { getUser, setUser } = useAuth()
 	const user = getUser()
+	const { push } = useHistory()
 
 	const [newUserName, setNewUserName] = useState(user?.name ? user.name : '')
 	const [newUserLastName, setNewUserLastName] = useState(
@@ -62,8 +64,6 @@ export default function User() {
 
 		var flagWhatHaveChanged = 0
 
-		console.log()
-
 		try {
 			if (
 				newUserName !== user?.name ||
@@ -87,7 +87,12 @@ export default function User() {
 
 				flagWhatHaveChanged += 1
 			}
-		} catch {
+		} catch (error) {
+			if (error.response.status === 401) {
+				toast.info('É necessário efetuar o login novamente')
+				push('/sing-in')
+				return
+			}
 			toast.error('Ocorreu um erro ao mudar os seus dados')
 		}
 
@@ -204,7 +209,7 @@ export default function User() {
 							<img src={userCam} alt='Trocar foto' className='user-cam' />
 						</label>
 					</div>
-					<strong>{`${user?.name} ${user?.last_name}`}</strong>
+					<strong>{`${newUserName} ${newUserLastName}`}</strong>
 				</UserIndividual>
 			</PageHeader>
 			<UserContainer>
