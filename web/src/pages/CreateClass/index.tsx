@@ -157,8 +157,8 @@ function TeacherForm() {
 		cleanCost = cleanCost.replace(',', '.')
 
 		if (
-			cleanCost[cleanCost.length - 1] == '.' &&
-			cleanCost[cleanCost.length - 2] == '.'
+			cleanCost[cleanCost.length - 1] === '.' &&
+			cleanCost[cleanCost.length - 2] === '.'
 		) {
 			return
 		}
