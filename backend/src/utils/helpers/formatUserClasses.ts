@@ -1,4 +1,5 @@
 import { UserClasses } from '../../repositories/classes/getUserClassesById'
+import convertMinuteToHours from './convertMinuteToHour'
 
 export interface NewUserClass {
 	id: number
@@ -10,8 +11,8 @@ export interface NewUserClass {
 
 interface Schedule {
 	week_day: number
-	start: number
-	end: number
+	start: string
+	end: string
 }
 
 function checkIfUserClassesIdIsInArray(
@@ -47,8 +48,8 @@ export default function formatUserClasses(
 				if (userClass.id === secondUserClass.id) {
 					newUserClass.schedule.push({
 						week_day: secondUserClass.week_day,
-						start: secondUserClass.start,
-						end: secondUserClass.end,
+						start: convertMinuteToHours(secondUserClass.start),
+						end: convertMinuteToHours(secondUserClass.end),
 					})
 				}
 			})
