@@ -4,6 +4,11 @@ interface MenuHamburguerProps {
 	active: boolean
 }
 
+interface ButtonProps {
+	study?: boolean
+	give_classes?: boolean
+}
+
 export const PageLanding = styled.div`
 	width: 100vw;
 	height: 100vh;
@@ -18,11 +23,13 @@ export const PageLanding = styled.div`
 `
 
 export const PageLandingContent = styled.div`
-	> img {
-		width: 60%;
-		@media (min-width: 700px) {
-			width: 100%;
-			padding-right: 9rem;
+	.landing-img-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin: 2rem 0;
+		img {
+			width: 90%;
 		}
 	}
 	width: 100%;
@@ -35,15 +42,23 @@ export const PageLandingContent = styled.div`
 
 	@media (min-width: 700px) {
 		display: grid;
-		grid-template-rows: 10rem 1fr 1fr;
+		grid-template-rows: 10rem 3fr 2fr;
 		grid-template-columns: 2fr 1fr 1fr;
 		grid-template-areas:
 			'user user user'
 			'logo hero hero'
 			'total buttons buttons';
 
-		> img {
+		.landing-img-container {
 			grid-area: hero;
+			margin: 0;
+
+			height: 100%;
+			width: 100%;
+
+			img {
+				width: 80%;
+			}
 		}
 	}
 `
@@ -304,7 +319,7 @@ export const ButtonsContainer = styled.div`
 	}
 `
 
-export const Button: any = styled.div`
+export const Button = styled.div<ButtonProps>`
 	border-radius: 0.8rem;
 	width: 100%;
 	max-width: 21rem;
@@ -348,7 +363,7 @@ export const Button: any = styled.div`
 		}
 	}
 
-	${(props: any) => {
+	${(props) => {
 		if (props.study) {
 			return css`
 				background: var(--color-primary-lighter);

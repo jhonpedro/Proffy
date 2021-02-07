@@ -105,11 +105,13 @@ function Landing() {
 					<img src={logoImg} alt='Proffy' />
 					<h2>Sua plataforma de estudos online</h2>
 				</LogoContainer>
-				<img
-					src={landingImg}
-					alt='Plataforma de estudos'
-					className='hero-image'
-				/>
+				<div className='landing-img-container'>
+					<img
+						src={landingImg}
+						alt='Plataforma de estudos'
+						className='hero-image'
+					/>
+				</div>
 				<ButtonsContainer>
 					<Button study>
 						<Link to='/study'>
