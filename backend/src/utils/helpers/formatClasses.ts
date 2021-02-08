@@ -15,6 +15,7 @@ export interface NewUsersClass {
 	name: string
 	last_name: string
 	whatsapp: string
+	photo: string
 	biography: string
 	subject: string
 	cost: string
@@ -81,7 +82,7 @@ export function formatUsersClasses(
 				name: userClass.name,
 				last_name: userClass.last_name,
 				whatsapp: userClass.whatsapp,
-				avatar: `http://${process.env.SERVER_IP}:${process.env.SERVER_PORT}/photo/${userClass.photo}`,
+				photo: `http://${process.env.SERVER_IP}:${process.env.SERVER_PORT}/photo/${userClass.photo}`,
 				subject: userClass.subject,
 				biography: userClass.biography,
 				cost: userClass.cost,
