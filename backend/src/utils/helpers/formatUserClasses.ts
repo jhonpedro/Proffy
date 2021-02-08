@@ -45,7 +45,10 @@ export default function formatUserClasses(
 			}
 
 			userClasses.forEach((secondUserClass) => {
-				if (userClass.id === secondUserClass.id) {
+				if (
+					userClass.id === secondUserClass.id &&
+					userClass.user_id === secondUserClass.user_id
+				) {
 					newUserClass.schedule.push({
 						week_day: secondUserClass.week_day,
 						start: convertMinuteToHours(secondUserClass.start),
