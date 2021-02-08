@@ -27,6 +27,7 @@ export default async function getUserClassesById(id: number) {
 			'classes_schedule.start',
 			'classes_schedule.end',
 		])
+		.orderBy('id', 'desc')
 
 	const userClassesFormated = formatUserClasses(userClasses)
 

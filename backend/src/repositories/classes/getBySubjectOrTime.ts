@@ -48,6 +48,8 @@ export default async function getBySubjectOrTime({
 		query.whereRaw('cs.end <= 1499')
 	}
 
+	query.orderBy('classes.id', 'desc')
+
 	const response: UsersClasses = await query.select([
 		'us.name',
 		'us.last_name',
