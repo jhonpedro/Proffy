@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import api from '../../services/axios'
-import { NewUserClass } from '../../../../backend/src/utils/helpers/formatUserClasses'
+import { NewUserClass } from '../../../../backend/src/utils/helpers/formatClasses'
 
 import PageHeader from '../../components/PageHeader'
 import TeacherItem from '../../components/TeacherItem'
