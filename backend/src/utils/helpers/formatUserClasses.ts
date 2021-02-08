@@ -19,14 +19,9 @@ function checkIfUserClassesIdIsInArray(
 	userClasses: NewUserClass[],
 	id: number
 ) {
-	let flag = false
-	userClasses.forEach((userClass) => {
-		if (userClass.id === id) {
-			flag = true
-		}
+	return userClasses.some((userClass) => {
+		return userClass.id === id
 	})
-
-	return flag
 }
 
 export default function formatUserClasses(
