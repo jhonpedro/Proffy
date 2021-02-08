@@ -1,5 +1,5 @@
 import Database from '../../database/connection'
-import formatUserClasses from '../../utils/helpers/formatUserClasses'
+import { formatUserClasses } from '../../utils/helpers/formatClasses'
 
 export interface UserClasses
 	extends Array<{

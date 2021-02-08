@@ -1,5 +1,21 @@
 import Database from '../../database/connection'
-import formatUserClasses from '../../utils/helpers/formatUserClasses'
+import { formatUsersClasses } from '../../utils/helpers/formatClasses'
+
+export interface UsersClasses
+	extends Array<{
+		user_id: number
+		id: number
+		name: string
+		last_name: string
+		whatsapp: string
+		photo: string
+		biography: string
+		subject: string
+		cost: string
+		week_day: number
+		start: number
+		end: number
+	}> {}
 
 interface PropsGetBySubjectOrTime {
 	subject?: string
@@ -32,10 +48,11 @@ export default async function getBySubjectOrTime({
 		query.whereRaw('cs.end <= 1499')
 	}
 
-	const response = await query.select([
+	const response: UsersClasses = await query.select([
 		'us.name',
 		'us.last_name',
 		'us.whatsapp',
+		'us.photo',
 		'classes.biography',
 		'classes.subject',
 		'classes.cost',
@@ -46,5 +63,5 @@ export default async function getBySubjectOrTime({
 		'cs.end',
 	])
 
-	return formatUserClasses(response)
+	return formatUsersClasses(response)
 }
