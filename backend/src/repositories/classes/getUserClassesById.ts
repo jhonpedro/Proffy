@@ -3,6 +3,7 @@ import formatUserClasses from '../../utils/helpers/formatUserClasses'
 
 export interface UserClasses
 	extends Array<{
+		user_id: number
 		id: number
 		biography: string
 		subject: string
@@ -17,6 +18,7 @@ export default async function getUserClassesById(id: number) {
 		.whereRaw('classes.user_id = ??', [id])
 		.leftJoin('classes_schedule', 'classes.id', 'classes_schedule.class_id')
 		.select([
+			'classes.user_id',
 			'classes.id',
 			'classes.biography',
 			'classes.subject',
