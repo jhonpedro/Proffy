@@ -13,15 +13,15 @@ export default {
 
 		const subject = filters.subject as string
 		const start = filters.start as string
-		const end = filters.end as string
+		const week_day = filters.week_day as string
+
 		try {
 			const startInMinutes = start ? convertHourToMinutes(start) : undefined
-			const endInMinutes = end ? convertHourToMinutes(end) : undefined
 
 			const classes = await getBySubjectOrTime({
 				subject,
+				week_day: Number(week_day),
 				start: startInMinutes,
-				end: endInMinutes,
 			})
 
 			return res.json(classes)
