@@ -1,4 +1,7 @@
 import styled from 'styled-components'
+import { TeacherItemContainer } from '../../components/TeacherItem/styles'
+import { SelectBlock } from '../../components/Select/styles'
+import { SimpleInputContainer } from '../../components/SimpleInput/styles'
 
 export const PageTeacherList = styled.div`
 	width: 100vw;
@@ -7,10 +10,26 @@ export const PageTeacherList = styled.div`
 	max-width: 100%;
 	@media (min-width: 700px) {
 	}
+
+	${TeacherItemContainer} + ${TeacherItemContainer} {
+		margin-top: 2rem;
+	}
 `
 
 export const Form = styled.form`
 	margin-top: 3.2rem;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+
+	${SelectBlock} {
+		width: 100%;
+	}
+	${SimpleInputContainer} {
+		margin: 0;
+	}
 
 	label {
 		color: var(--color-text-in-primary);
@@ -24,7 +43,8 @@ export const Form = styled.form`
 		border: 0;
 		border-radius: 0.8rem;
 		cursor: pointer;
-		font: 700 1.6rem Archivo;
+		font-weight: 700;
+		font-size: 1.6rem;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -38,13 +58,21 @@ export const Form = styled.form`
 	}
 
 	@media (min-width: 700px) {
-		display: grid;
-		grid-template-columns: 1.33fr 1.33fr 1.33fr 0.5fr;
-		column-gap: 16px;
-		position: absolute;
-		bottom: -28px;
+		width: 100%;
+		flex-direction: row;
+		justify-content: space-evenly;
+		align-items: center;
 
-		button {
+		${SelectBlock} {
+			width: 20%;
+		}
+
+		${SimpleInputContainer} {
+			width: 20%;
+		}
+
+		> button {
+			width: 20%;
 		}
 	}
 `
@@ -52,7 +80,7 @@ export const Form = styled.form`
 export const Main = styled.main`
 	@media (min-width: 700px) {
 		padding: 3.2rem 0;
-		max-width: 740px;
-		margin: 0 auto;
+		max-width: 74rem;
+		margin: -5rem auto 0;
 	}
 `
