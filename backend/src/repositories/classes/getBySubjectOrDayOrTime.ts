@@ -19,14 +19,14 @@ export interface UsersClasses
 
 interface PropsGetBySubjectOrTime {
 	subject?: string
+	week_day?: number
 	start?: number
-	end?: number
 }
 
 export default async function getBySubjectOrTime({
 	subject,
+	week_day,
 	start,
-	end,
 }: PropsGetBySubjectOrTime) {
 	const query = Database('classes')
 	query.innerJoin('users as us', 'classes.user_id', 'us.id')
@@ -34,18 +34,12 @@ export default async function getBySubjectOrTime({
 	if (subject) {
 		query.where('classes.subject', '=', subject)
 	}
-	if (start && end) {
-		query.whereRaw('cs.start >= ??', [start])
-		query.whereRaw('cs.end >= ??', [end])
-	} else if (start) {
+	if (start) {
 		query.whereRaw('cs.start >= ??', [start])
 		query.whereRaw('cs.end <= 1499')
-	} else if (end) {
-		query.whereRaw('cs.start >= 0')
-		query.whereRaw('cs.end <= ??', [end])
-	} else {
-		query.whereRaw('cs.start >= 0')
-		query.whereRaw('cs.end <= 1499')
+	}
+	if (week_day || week_day === 0) {
+		query.whereRaw('cs.week_day = ??', [week_day])
 	}
 
 	query.orderBy('classes.id', 'desc')
