@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import api from '../../services/axios'
+import { toast } from 'react-toastify'
 import { NewUserClass } from '../../../../backend/src/utils/helpers/formatClasses'
 
 import PageHeader from '../../components/PageHeader'
@@ -39,9 +40,19 @@ function MyClasses() {
 	})
 
 	useEffect(() => {
-		api.get('/user-classes').then((response) => {
-			setUserClasses(response.data)
-		})
+		api
+			.get('/user-classes')
+			.then((response) => {
+				setUserClasses(response.data)
+			})
+			.catch((error) => {
+				if (error) {
+					if (error.response.status === 401) {
+						toast.info('É necessário fazer o login novamente')
+						push('/sing-in', { lastPage: '/my-classes' })
+					}
+				}
+			})
 	}, [])
 
 	function redirectToCreateClass() {
