@@ -1,4 +1,4 @@
-import getBySubjectOrTime from './getBySubjectOrTime'
+import getBySubjectOrTime from './getBySubjectOrDayOrTime'
 import createClass from './createClass'
 import getUserClassesById from './getUserClassesById'
 

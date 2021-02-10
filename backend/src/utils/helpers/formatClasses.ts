@@ -1,5 +1,5 @@
 import { UserClasses } from '../../repositories/classes/getUserClassesById'
-import { UsersClasses } from '../../repositories/classes/getBySubjectOrTime'
+import { UsersClasses } from '../../repositories/classes/getBySubjectOrDayOrTime'
 import convertMinuteToHours from './convertMinuteToHour'
 
 export interface NewUserClass {
