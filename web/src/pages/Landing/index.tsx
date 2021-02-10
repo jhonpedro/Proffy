@@ -39,7 +39,9 @@ function Landing() {
 	}, [totalConnections, user])
 
 	function changeIsLateralMenuToFalse() {
-		setIsLateralMenuActive(false)
+		if (isLateralMenuActive) {
+			setIsLateralMenuActive(false)
+		}
 	}
 
 	window.addEventListener('resize', changeIsLateralMenuToFalse)
