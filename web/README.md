@@ -3,25 +3,24 @@
 </h1>
 
 <h3 align="center">
-  Proffy - find a teacher for you where you are whenever you want
+  Proffy Web - find a teacher for you where you are whenever you want
 </h3>
 
-
 <p align="center">
-  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/jhonpedro/Proffy">
+  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/jhonpedro/proffy">
 
   <a href="https://github.com/jhonpedro">
     <img alt="Made by" src="https://img.shields.io/badge/made%20by-joao%20pedro-gree">
   </a>
   
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/jhonpedro/Proffy">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/jhonpedro/proffy">
   
-  <a href="https://github.com/jhonpedro/Proffy/commits/master">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/jhonpedro/Proffy">
+  <a href="https://github.com/jhonpedro/proffy/commits/master">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/jhonpedro/proffy">
   </a>
   
-  <a href="https://github.com/jhonpedro/Proffy/issues">
-    <img alt="Repository issues" src="https://img.shields.io/github/issues/jhonpedro/Proffy">
+  <a href="https://github.com/jhonpedro/proffy/issues">
+    <img alt="Repository issues" src="https://img.shields.io/github/issues/jhonpedro/proffy">
   </a>
 
 </p>
@@ -34,18 +33,22 @@
 
 ## 👨🏻‍💻 About the project
 
-- <p style="color: red;">A aplication that connect students with teachers, in this project we can set up classes and study with teachers from any place in the world</strong></p>
+- <p style="color: red;">This is the web part of the aplication, so here we can se one of the two parts of the front end.</p>
 
-To see the **Api project**, click here: [Proffy API](https://github.com/jhonpedro/Proffy/tree/master/backend)</br>
-To see the **Mobile project**, click here: [Proffy mobile](https://github.com/jhonpedro/Proffy/tree/master/mobile)</br>
+To see the **Api project**, click here: [proffy API](https://github.com/jhonpedro/proffy/tree/master/backend)</br>
+To see the **Mobile project**, click here: [proffy mobile](https://github.com/jhonpedro/proffy/tree/master/mobile)</br>
 
 ## 🚀 Technologies
 
 Technologies that I used to develop this api
 
 - [ReactJS](https://pt-br.reactjs.org/)
+- [React Icons](https://pt-br.reactjs.org/)
+- [React Toastify](https://pt-br.reactjs.org/)
+- [Styled components](https://pt-br.reactjs.org/)
 - [React router DOM](https://reactrouter.com/web/guides/quick-start)
 - [Axios](https://github.com/axios/axios)
+- [Yup](https://pt-br.reactjs.org/)
 
 ## 💻 Getting started
 
@@ -53,18 +56,13 @@ See below how you can start using the project
 
 ### Requirements
 
-- Api running
+- [API](https://github.com/jhonpedro/proffy/tree/master/backend) running
 - [Node.js](https://nodejs.org/en/)
 - [Yarn](https://classic.yarnpkg.com/) or [npm](https://www.npmjs.com/)
-<!-- - One instance of [PostgreSQL](https://www.postgresql.org/) -->
-
-**Clone the project and access the folder**
-
-```bash
-$ git clone https://github.com/jhonpedro/Proffy && cd Proffy
-```
 
 **Follow the steps below**
+
+If you have all requeriments i assume that you have already cloned the project.
 
 ```bash
 # Install the dependencies
@@ -74,7 +72,7 @@ $ yarn install
 # To finish, run the api service
 $ yarn start
 
-# Be sure that the Api is running!
+# Now you have the Web part of the aplication running as a development server!
 ```
 
 > I'm using this template [here](https://github.com/EliasGcf/readme-template/tree/master/templates)

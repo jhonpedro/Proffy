@@ -3,25 +3,24 @@
 </h1>
 
 <h3 align="center">
-  Proffy - find a teacher for you where you are whenever you want
+  Proffy API - find a teacher for you where you are whenever you want.
 </h3>
 
-
 <p align="center">
-  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/jhonpedro/Proffy">
+  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/jhonpedro/proffy">
 
   <a href="https://github.com/jhonpedro">
     <img alt="Made by" src="https://img.shields.io/badge/made%20by-joao%20pedro-gree">
   </a>
   
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/jhonpedro/Proffy">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/jhonpedro/proffy">
   
-  <a href="https://github.com/jhonpedro/Proffy/commits/master">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/jhonpedro/Proffy">
+  <a href="https://github.com/jhonpedro/proffy/commits/master">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/jhonpedro/proffy">
   </a>
   
-  <a href="https://github.com/jhonpedro/Proffy/issues">
-    <img alt="Repository issues" src="https://img.shields.io/github/issues/jhonpedro/Proffy">
+  <a href="https://github.com/jhonpedro/proffy/issues">
+    <img alt="Repository issues" src="https://img.shields.io/github/issues/jhonpedro/proffy">
   </a>
 
 </p>
@@ -34,10 +33,12 @@
 
 ## 👨🏻‍💻 About the project
 
-- <p style="color: red;">A aplication that connect students with teachers, in this project we can set up classes and study with teachers from any place in the world</strong></p>
+- <p style="color: red;">This is the server part of the whole project, so here you can find some business rules, and see how the project works under the table</p>
 
-To see the **Web client**, click here: [Proffy WEB](https://github.com/jhonpedro/Proffy/tree/master/frontend)</br>
-To see the **Mobile project**, click here: [Proffy MOBILE](https://github.com/jhonpedro/Proffy/tree/master/mobile)</br>
+- In this API project i tried to follow an architecture separating queries from the controllers, i liked how things got a little easier.
+
+To see the **API client**, click here: [proffy WEB](https://github.com/jhonpedro/proffy/tree/master/backend)</br>
+To see the **Mobile project**, click here: [proffy MOBILE](https://github.com/jhonpedro/proffy/tree/master/mobile)</br>
 
 ## 🚀 Technologies
 
@@ -45,9 +46,14 @@ Technologies that I used to develop this api
 
 - [Node.js](https://nodejs.org/en/)
 - [Express](https://expressjs.com/pt-br/)
-- [SQlite](https://www.npmjs.com/package/sqlite3)
-- [cors](https://github.com/expressjs/cors)
-- [Knex](http://knexjs.org/)
+- [Multer](https://www.npmjs.com/package/multer)
+- [Knex](https://www.npmjs.com/package/knex)
+- [Postgres](https://www.postgresql.org/)
+- [cors](https://www.npmjs.com/package/cors)
+- [Bcrypt](https://www.npmjs.com/package/bcrypt)
+- [JWT](https://www.npmjs.com/package/jsonwebtoken)
+- [Nodemailer](https://www.npmjs.com/package/nodemailer)
+- [Sharp](https://www.npmjs.com/package/sharp)
 
 ## 💻 Getting started
 
@@ -57,25 +63,31 @@ See below how you can start using the project
 
 - [Node.js](https://nodejs.org/en/)
 - [Yarn](https://classic.yarnpkg.com/) or [npm](https://www.npmjs.com/)
-<!-- - One instance of [PostgreSQL](https://www.postgresql.org/) -->
+- [Docker](https://www.docker.com/) and [DockerCompose](https://docs.docker.com/compose/install/)
+
+If you're on windows or mac and have docker, you already have included some technologies and docker compose is one of them.
 
 **Clone the project and access the folder**
 
 ```bash
-$ git clone https://github.com/jhonpedro/Proffy && cd Proffy
+$ git clone https://github.com/jhonpedro/proffy && cd proffy
+```
+
+```bash
+  This "&&" above do not work on windows, you will have to change it for ";"
 ```
 
 **Follow the steps below**
 
 ```bash
-# Install the dependencies
+# Run docker-compose
 $ cd /backend
-$ yarn install
+$ docker-compose up -d
 
-# To finish, run the api service
-$ yarn start
+# Well done, the API project it is started!
+# Yeah that's it Docker make things so easy 😭😭😭!
 
-# Well done, project is started!
+# Now go to the Web project!!!
 ```
 
 > I'm using this template [here](https://github.com/EliasGcf/readme-template/tree/master/templates)
