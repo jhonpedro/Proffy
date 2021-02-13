@@ -57,27 +57,23 @@ const AuthProvider: React.FC = ({ children }) => {
 	async function singIn(email: string, password: string, remember: boolean) {
 		localStorage.clear()
 		setRemeber(false)
-		try {
-			const response = await axios.post<SessionPostProps>('/user/session', {
-				email,
-				password,
-			})
+		const response = await axios.post<SessionPostProps>('/user/session', {
+			email,
+			password,
+		})
 
-			const { token, user } = response.data
-			user.email = email
+		const { token, user } = response.data
+		user.email = email
 
-			axios.defaults.headers.Authorization = `Bearer ${token}`
+		axios.defaults.headers.Authorization = `Bearer ${token}`
 
-			setToken(token)
-			setUser(user)
-			if (remember) {
-				setRemeber(true)
-				localStorage.setItem('user', JSON.stringify(user))
-				localStorage.setItem('token', token)
-				localStorage.setItem('remember', remember + '')
-			}
-		} catch (error) {
-			return
+		setToken(token)
+		setUser(user)
+		if (remember) {
+			setRemeber(true)
+			localStorage.setItem('user', JSON.stringify(user))
+			localStorage.setItem('token', token)
+			localStorage.setItem('remember', remember + '')
 		}
 	}
 
