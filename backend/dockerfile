@@ -1,0 +1,7 @@
+FROM node
+RUN mkdir -p /proffy/backend/
+WORKDIR /proffy/backend/
+COPY . .
+RUN npm install
+EXPOSE 3030
+CMD npm start
