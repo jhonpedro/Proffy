@@ -9,9 +9,9 @@ class App {
 
 	constructor() {
 		this.app = express()
+		dotenv.config()
 		this.middlewares()
 		this.routes()
-		dotenv.config()
 	}
 
 	middlewares() {
