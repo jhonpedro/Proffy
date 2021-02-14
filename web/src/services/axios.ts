@@ -1,5 +1,6 @@
 import axios from 'axios'
 
 export default axios.create({
-  baseURL: 'http://localhost:3030'
+	//If you've ran the docker-compose this is the api
+	baseURL: 'http://localhost:11111',
 })
