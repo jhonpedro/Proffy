@@ -257,7 +257,9 @@ export default {
 
 			const user = { id, name, last_name, photo, whatsapp }
 
-			user.photo = `http://${process.env.SERVER_IP}:${process.env.SERVER_PORT}/photo/${photo}`
+			if (photo) {
+				user.photo = `http://${process.env.SERVER_IP}:${process.env.SERVER_PORT}/photo/${photo}`
+			}
 
 			if (!id || !passwordInDataBase) {
 				throw new InvalidParamError('No user found')
