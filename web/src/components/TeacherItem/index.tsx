@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import api from '../../services/axios'
+import { FaUserCircle } from 'react-icons/fa'
 
 import whatsappIcon from '../../assets/images/icons/whatsapp.svg'
 import scheduleArrow from '../../assets/images/icons/schedule-arrow.svg'
@@ -85,7 +86,11 @@ const TeacherItem: React.FC<TeacherItemProps> = ({ teacher, schedule }) => {
 	return (
 		<TeacherItemContainer>
 			<Header>
-				<img src={teacher.avatar} alt={teacher.name} />
+				{teacher.avatar ? (
+					<img src={teacher.avatar} alt={teacher.name} />
+				) : (
+					<FaUserCircle size='8rem' />
+				)}
 				<div>
 					<strong>{teacher.name}</strong>
 					<span>{teacher.subject}</span>
