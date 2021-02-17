@@ -199,10 +199,10 @@ export default function User() {
 			<PageHeader middleTitleText='Meu perfil' title=''>
 				<UserIndividual>
 					<div className='photo'>
-						{newUserPhoto ? (
+						{newUserPhoto.blob ? (
 							<img src={newUserPhoto.blob} alt={`Foto de ${user?.name}`} />
 						) : (
-							<FaUserCircle size='18.75rem' />
+							<FaUserCircle size='18rem' />
 						)}
 						<label htmlFor='photoFile'>
 							<input type='file' id='photoFile' onChange={handleChangePhoto} />
