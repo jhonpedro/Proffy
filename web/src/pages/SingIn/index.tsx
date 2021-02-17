@@ -24,7 +24,7 @@ function SingIn() {
 		const schema = Yup.object().shape({
 			email: Yup.string().email('Email inválido').required('Email obrigatório'),
 			password: Yup.string()
-				// .min(6, 'Senha com no mínimo 6 caracteres')
+				.min(6, 'Senha com no mínimo 6 caracteres')
 				.required('Senha obrigatória'),
 		})
 
@@ -43,6 +43,8 @@ function SingIn() {
 		} catch (error) {
 			if (error.name === 'ValidationError') {
 				error?.errors.map((err: Yup.ValidationError) => toast.error(err))
+			} else {
+				toast.error('Ocorreu um erro ao fazer o login, tente novamente.')
 			}
 		}
 	}
