@@ -81,10 +81,14 @@ function TeacherForm() {
 						.required('O horário do final de aula é obrigatório'),
 				})
 			),
+			userWhatsapp: Yup.string().required('O whatsapp é obrigatório'),
 		})
 
 		try {
-			schema.validateSync(classesDataForm, { abortEarly: false })
+			schema.validateSync(
+				{ ...classesDataForm, userWhatsapp: user.whatsapp },
+				{ abortEarly: false }
+			)
 		} catch (err) {
 			err.errors.forEach((errName: string) => {
 				toast.error(errName)
