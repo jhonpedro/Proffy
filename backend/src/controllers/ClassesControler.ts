@@ -26,7 +26,9 @@ export default {
 
 			return res.json(classes)
 		} catch (error) {
-			return res.status(500).json({ message: error.message })
+			return res
+				.status(500)
+				.json({ message: 'an error ocurred in the database' })
 		}
 	},
 
@@ -42,7 +44,7 @@ export default {
 		const { biography, subject, cost, schedule } = req.body
 
 		if (!biography || !subject || !cost || !schedule) {
-			return res.status(400).json({ error: 'Missing params' })
+			return res.status(400).json({ error: 'missing params' })
 		}
 
 		const user_id = req.user.id
@@ -62,7 +64,7 @@ export default {
 
 			return res.sendStatus(201)
 		} catch (error) {
-			return res.status(400).json({ error: error.message })
+			return res.status(400).json({ error: 'error in class creation' })
 		}
 	},
 }
