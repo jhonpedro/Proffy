@@ -34,7 +34,7 @@ export default {
 		try {
 			const isEmailValid = emailValidator(email)
 
-			if (!isEmailValid || !name || !password) {
+			if (!isEmailValid || !name || !password || password.length < 6) {
 				throw new InvalidParamError('Email, name or password')
 			}
 
@@ -44,7 +44,7 @@ export default {
 			const createdUser = await createUserRepository({
 				name,
 				last_name,
-				email,
+				email: email.toLowerCase(),
 				password: encryptedPassword,
 			})
 
@@ -275,8 +275,7 @@ export default {
 				return res.status(200).json({ token, user })
 			})
 		} catch (error) {
-			console.log(error)
-			return res.sendStatus(401)
+			return res.status(400).json({ message: 'user probably dont exist' })
 		}
 	},
 }
