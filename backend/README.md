@@ -80,6 +80,8 @@ $ git clone https://github.com/jhonpedro/proffy && cd proffy
 **Follow the steps below**
 
 ```bash
+#Before you run docker-compose you have fill the ".env.example" and change it's name to just ".env"
+
 # Run docker-compose
 $ cd /backend
 $ docker-compose up -d
