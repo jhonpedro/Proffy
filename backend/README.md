@@ -49,11 +49,14 @@ Technologies that I used to develop this api
 - [Multer](https://www.npmjs.com/package/multer)
 - [Knex](https://www.npmjs.com/package/knex)
 - [Postgres](https://www.postgresql.org/)
+- [Docker](https://www.docker.com/)
+- [Docker compose](https://docs.docker.com/compose/)
 - [cors](https://www.npmjs.com/package/cors)
 - [Bcrypt](https://www.npmjs.com/package/bcrypt)
 - [JWT](https://www.npmjs.com/package/jsonwebtoken)
 - [Nodemailer](https://www.npmjs.com/package/nodemailer)
 - [Sharp](https://www.npmjs.com/package/sharp)
+- [Nodemon](https://www.npmjs.com/package/nodemon)
 
 ## 💻 Getting started
 
