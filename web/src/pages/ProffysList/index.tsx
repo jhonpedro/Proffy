@@ -10,8 +10,6 @@ import Select from '../../components/Select'
 import { PageTeacherList, Form, Main } from './styles'
 import SimpleInput from '../../components/SimpleInput'
 
-// import './styles.css'
-
 function TeacherList() {
 	const [proffys, setProffys] = useState<NewUsersClass[]>([])
 

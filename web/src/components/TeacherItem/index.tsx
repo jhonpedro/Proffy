@@ -5,8 +5,6 @@ import { FaUserCircle } from 'react-icons/fa'
 import whatsappIcon from '../../assets/images/icons/whatsapp.svg'
 import scheduleArrow from '../../assets/images/icons/schedule-arrow.svg'
 
-// import './styles.css'
-
 import {
 	TeacherItemContainer,
 	Header,

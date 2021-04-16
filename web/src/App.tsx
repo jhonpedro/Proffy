@@ -5,8 +5,6 @@ import { BrowserRouter } from 'react-router-dom'
 
 import 'react-toastify/dist/ReactToastify.min.css'
 
-// import './assets/styles/global.css'
-
 import Routes from './routes'
 import AppProvider from './hooks'
 

@@ -2,8 +2,6 @@ import React, { InputHTMLAttributes, useState, FocusEvent } from 'react'
 
 import { InputBlock, InputElement, Label } from './styles'
 
-// import './styles.css'
-
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 	label: string
 	name: string

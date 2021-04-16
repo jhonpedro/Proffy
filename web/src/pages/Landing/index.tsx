@@ -11,8 +11,6 @@ import giveClasIcons from '../../assets/images/icons/give-classes.svg'
 import purpleHeart from '../../assets/images/icons/purple-heart.svg'
 import singOutIcon from '../../assets/images/icons/sing-out.svg'
 
-// import './styles.css'
-
 import {
 	PageLanding,
 	Header,

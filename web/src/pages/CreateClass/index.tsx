@@ -23,8 +23,6 @@ import { useAuth } from '../../hooks/auth'
 import SimpleInput from '../../components/SimpleInput'
 import Button from '../../components/Button'
 
-// import './styles.css'
-
 interface ScheduleItem {
 	week_day: number
 	start: string
